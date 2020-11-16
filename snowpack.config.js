@@ -4,10 +4,7 @@ module.exports = {
     public: '/',
     src: '/_dist_',
   },
-  plugins: [
-    '@snowpack/plugin-svelte',
-    '@snowpack/plugin-dotenv',
-  ],
+  plugins: ['@snowpack/plugin-svelte', '@snowpack/plugin-dotenv'],
   install: [
     /* ... */
   ],
@@ -26,4 +23,4 @@ module.exports = {
   alias: {
     /* ... */
   },
-};
+}

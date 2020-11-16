@@ -1,12 +1,15 @@
 <script>
-  import {onMount} from 'svelte';
-  let count = 0;
+  import { onMount } from "svelte"
+
+  let count = 0
+
   onMount(() => {
-    const interval = setInterval(() => count++, 1000);
+    const interval = setInterval(() => count++, 1000)
+
     return () => {
-      clearInterval(interval);
-    };
-  });
+      clearInterval(interval)
+    }
+  })
 </script>
 
 <style>
@@ -61,7 +64,11 @@
     <p>Edit <code>src/App.svelte</code> and save to reload.</p>
     <p>Page has been open for <code>{count}</code> seconds.</p>
     <p>
-      <a class="App-link" href="https://svelte.dev" target="_blank" rel="noopener noreferrer">
+      <a
+        class="App-link"
+        href="https://svelte.dev"
+        target="_blank"
+        rel="noopener noreferrer">
         Learn Svelte
       </a>
     </p>
