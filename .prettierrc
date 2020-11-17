@@ -10,7 +10,8 @@
       "options": {
         "plugins": [
           "svelte"
-        ]
+        ],
+        "svelteSortOrder": "scripts-styles-markup"
       }
     }
   ]
