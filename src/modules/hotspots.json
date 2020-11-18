@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Melkweg",
+    "lat": "52.364790",
+    "long": "4.881245"
+  },
+  {
+    "name": "NEMO",
+    "lat": "52.374334",
+    "long": "4.912231"
+  },
+  {
+    "name": "Concertgebouw",
+    "lat": "52.356314",
+    "long": "4.879059"
+  },
+  {
+    "name": "Rijksmuseum",
+    "lat": "52.360043",
+    "long": "4.885225"
+  },
+  {
+    "name": "ARTIS",
+    "lat": "52.366021",
+    "long": "4.916573"
+  },
+  {
+    "name": "De Dam",
+    "lat": "52.373083",
+    "long": "4.892648"
+  },
+  {
+    "name": "Hermitage",
+    "lat": "52.365285",
+    "long": "4.902391"
+  },
+  {
+    "name": "Hortus Botanicus",
+    "lat": "52.366672",
+    "long": "4.908182"
+  },
+  {
+    "name": "RAI",
+    "lat": "52.341307",
+    "long": "4.888276"
+  },
+  {
+    "name": "De Wallen",
+    "lat": "52.372715",
+    "long": "4.897384"
+  },
+  {
+    "name": "VUmc",
+    "lat": "52.336160",
+    "long": "4.859080"
+  },
+  {
+    "name": "Zuidas",
+    "lat": "52.338813",
+    "long": "4.873673"
+  },
+  {
+    "name": "A’DAM Lookout",
+    "lat": "52.383876",
+    "long": "4.902366"
+  },
+  {
+    "name": "Paradiso",
+    "lat": "52.362158",
+    "long": "4.883834"
+  },
+  {
+    "name": "Westerpark",
+    "lat": "52.386045",
+    "long": "4.877888"
+  },
+  {
+    "name": "Oosterpark",
+    "lat": "52.358951",
+    "long": "4.920834"
+  },
+  {
+    "name": "AFAS Live",
+    "lat": "52.312478",
+    "long": "4.944101"
+  },
+  {
+    "name": "Nelson Mandelapark",
+    "lat": "52.311218",
+    "long": "4.962199"
+  },
+  {
+    "name": "Carré",
+    "lat": "52.362388",
+    "long": "4.904266"
+  },
+  {
+    "name": "Johan Cruijff Arena",
+    "lat": "52.314378",
+    "long": "4.941972"
+  },
+  {
+    "name": "Nieuwmarkt",
+    "lat": "52.372116",
+    "long": "4.900780"
+  },
+  {
+    "name": "Rembrandtplein",
+    "lat": "52.366198",
+    "long": "4.896926"
+  },
+  {
+    "name": "NDSM",
+    "lat": "52.400865",
+    "long": "4.893424"
+  },
+  {
+    "name": "Joods Historisch Museum",
+    "lat": "52.367089",
+    "long": "4.903784"
+  },
+  {
+    "name": "Waterlooplein",
+    "lat": "52.368127",
+    "long": "4.904166"
+  },
+  {
+    "name": "Tropenmuseum",
+    "lat": "52.362674",
+    "long": "4.922381"
+  },
+  {
+    "name": "Olympisch stadion",
+    "lat": "52.343413",
+    "long": "4.854119"
+  },
+  {
+    "name": "HvA Amstelcampus",
+    "lat": "52.358861",
+    "long": "4.909387"
+  }
+]

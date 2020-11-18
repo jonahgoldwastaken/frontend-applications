@@ -2,8 +2,8 @@ import {
   always,
   andThen,
   assoc,
-  find,
   filter,
+  find,
   ifElse,
   isNil,
   map,
@@ -11,14 +11,19 @@ import {
   otherwise,
   pick,
   pipe,
+  project,
+  prop,
   propEq,
   values,
+  zipObj,
 } from 'ramda'
 import { renameKeys } from 'ramda-adjunct'
 import { uri } from '../config/data'
 import { unwrapArrayValueAtIndex } from '../utilities/array'
 import { fetchData, parseResToJSON } from '../utilities/data.js'
+import { calculateHaversine } from '../utilities/geo-data'
 import { parseGeoData } from './geo-data.js'
+import hotspots from './hotspots.json'
 
 export { parseRDWData }
 
@@ -51,6 +56,12 @@ function parkingAreaMapper(data) {
         assoc('openingHours', associateParkingEntrance(data[4], val))
       )(val)
     ),
+    map(val =>
+      assoc(
+        'distanceToHotspot',
+        associateDistancesToHotspots(hotspots, val)
+      )(val)
+    ),
     map(mapAddOpeningHoursAsKeyToArea),
     filter(filterInvalidCoordinates)
   )(data[0])
@@ -73,7 +84,7 @@ function associateSpecifications(specs, area) {
     ifElse(
       isNil,
       always(0),
-      pick(['capacity']),
+      prop('capacity'),
       unwrapArrayValueAtIndex(0),
       Number
     )
@@ -102,9 +113,16 @@ function associateParkingEntrance(entrance, area) {
     ifElse(
       isNil,
       always([null, null]),
-      pipe(pick(['enterfrom', 'enteruntil']), map(Object.values))
+      pipe(pick(['enterfrom', 'enteruntil']), Object.values)
     )
   )(entrance)
+}
+
+function associateDistancesToHotspots(hotspots, area) {
+  return pipe(
+    map(calculateHaversine(area)),
+    zipObj(pipe(project(['name']), map(prop('name')))(hotspots))
+  )(hotspots)
 }
 
 function mapAddOpeningHoursAsKeyToArea(area) {

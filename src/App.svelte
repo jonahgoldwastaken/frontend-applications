@@ -6,11 +6,9 @@
   import H1 from './components/atoms/H1.svelte'
   import H2 from './components/atoms/H2.svelte'
   import H3 from './components/atoms/H3.svelte'
-  import Clock from './components/organisms/Clock.svelte'
+  import Clock from './components/molecules/Clock.svelte'
 
-  onMount(() => {
-    parseRDWData().then(rdwData.set).catch(console.trace)
-  })
+  onMount(() => parseRDWData().then(rdwData.set).catch(console.trace))
 </script>
 
 <style>

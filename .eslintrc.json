@@ -5,25 +5,23 @@
     "ecmaVersion": 2020
   },
   "env": {
+    "browser": true,
     "es6": true,
     "node": true
   },
+  "plugins": [
+    "svelte3"
+  ],
   "extends": [
     "eslint:recommended"
   ],
-  "rules": {},
+  "rules": {
+    "no-undef": "error"
+  },
   "overrides": [
     {
-      "files": "src/**/*.js",
-      "env": {
-        "browser": true,
-        "node": false
-      }
-    },
-    {
-      "files": "src/**/*.svelte",
-      "plugins": [
-        "svelte3"
+      "files": [
+        "*.svelte"
       ],
       "processor": "svelte3/svelte3"
     }

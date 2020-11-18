@@ -1,4 +1,6 @@
-export { enterDots, updateDots }
+import { scaleLinear } from 'd3'
+
+export { enterDots, updateDots, createClockScales }
 
 /**
  * Enter function for D3 selection.join
@@ -37,4 +39,11 @@ function updateDots(line) {
         .duration(100)
         .attr('transform', d => `translate(${line([d]).slice(1).slice(0, -1)})`)
     )
+}
+
+function createClockScales(times, distances, radius) {
+  return [
+    scaleLinear().domain(times).range([0, 360]),
+    scaleLinear().domain(distances).range([100, radius]),
+  ]
 }

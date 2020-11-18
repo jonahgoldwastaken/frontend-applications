@@ -1,7 +1,13 @@
 <script>
   let pageX
   let pageY
-  export let visible = false
+
+  function handleMouseMove(e) {
+    if (visible) {
+      pageX = e.pageX
+      pageY = e.pageY
+    }
+  }
 </script>
 
 <style>
@@ -11,11 +17,11 @@
     position: fixed;
     top: var(--y);
     left: var(--x);
+    background: black;
   }
 </style>
 
-{#if visible}
-  <div style="--x: {pageX}px; --y: {pageY}px">
-    <slot />
-  </div>
-{/if}
+<svelte:body on:mousemove={handleMouseMove} />
+<div style="--x: {pageX}px; --y: {pageY}px">
+  <slot />
+</div>

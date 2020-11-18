@@ -1,4 +1,6 @@
-export { isGeoDataPoint }
+import haversine from 'haversine'
+
+export { isGeoDataPoint, calculateHaversine }
 
 /**
  * Checks if GeoData is a Point or not
@@ -8,4 +10,13 @@ export { isGeoDataPoint }
  */
 function isGeoDataPoint(data) {
   return data[0] === 'POINT'
+}
+
+function calculateHaversine(area) {
+  return hotspot =>
+    haversine(
+      [area.coordinates.long, area.coordinates.lat],
+      [+hotspot.long, +hotspot.lat],
+      { format: '[lon,lat]' }
+    ).toFixed(2)
 }
