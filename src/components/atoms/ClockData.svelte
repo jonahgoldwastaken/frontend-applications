@@ -8,7 +8,12 @@
     filterOnDistanceToHotspot,
     filterOnOpeningHours,
   } from '../../utilities/clock'
-  import { angleScale, radiusScale, tooltipVisible } from '../store/clock'
+  import {
+    angleScale,
+    currentParkingArea,
+    radiusScale,
+    tooltipVisible,
+  } from '../store/clock'
   import {
     chosenHotspot,
     currentHotspot,
@@ -47,13 +52,13 @@
       )($rdwData)
   )
   $: line = derived(
-    [angleScale, radiusScale, chosenHotspot],
-    ([$angleScale, $radiusScale, $chosenHotspot]) =>
+    [angleScale, radiusScale, chosenHotspot, timeType],
+    ([$angleScale, $radiusScale, $chosenHotspot, $timeType]) =>
       lineRadial()
         .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
         .angle(d =>
           $angleScale(
-            timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
+            $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
           )
         )
   )
@@ -64,8 +69,11 @@
       .on('mouseout', mouseOutHandler)
   })
 
-  function mouseOverHandler() {
-    tooltipVisible.set(true)
+  function mouseOverHandler(data) {
+    return () => {
+      currentParkingArea.set(data)
+      tooltipVisible.set(true)
+    }
   }
 
   function mouseOutHandler() {
@@ -92,7 +100,7 @@
   {#each $data as datum, index (datum.id + datum.description + index)}
     <circle
       class="dot"
-      on:mouseover={mouseOverHandler}
+      on:mouseover={mouseOverHandler(datum)}
       on:mouseout={mouseOutHandler}
       class:dot-has-time={(timeType === 'opening' && datum.openingHours[0]) || (timeType === 'closing' && datum.openingHours[1])}
       class:dot-has-no-time={(timeType === 'opening' && !datum.openingHours[0]) || (timeType === 'closing' && !datum.openingHours[1])}
