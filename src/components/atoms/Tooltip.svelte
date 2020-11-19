@@ -1,12 +1,12 @@
 <script>
+  import { tooltipVisible } from '../store/clock'
+
   let pageX
   let pageY
 
   function handleMouseMove(e) {
-    if (visible) {
-      pageX = e.pageX
-      pageY = e.pageY
-    }
+    pageX = e.pageX
+    pageY = e.pageY
   }
 </script>
 
@@ -18,10 +18,17 @@
     top: var(--y);
     left: var(--x);
     background: black;
+    pointer-events: none;
+  }
+  h1 {
+    color: white;
   }
 </style>
 
 <svelte:body on:mousemove={handleMouseMove} />
-<div style="--x: {pageX}px; --y: {pageY}px">
-  <slot />
-</div>
+
+{#if $tooltipVisible}
+  <div style="--x: {pageX}px; --y: {pageY}px">
+    <h1>Hoi</h1>
+  </div>
+{/if}

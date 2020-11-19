@@ -1,4 +1,4 @@
-export { fetchData, parseResToJSON }
+export { fetchData, parseResToJSON, localStorageIsSupported }
 
 /**
  * Fetches data from url
@@ -14,4 +14,15 @@ function fetchData(url) {
  */
 function parseResToJSON(res) {
   return res.json()
+}
+
+function localStorageIsSupported() {
+  try {
+    const test = 'test'
+    localStorage.setItem(test, test)
+    localStorage.removeItem(test)
+    return true
+  } catch {
+    return false
+  }
 }

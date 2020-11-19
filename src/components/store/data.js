@@ -1,12 +1,6 @@
-import { always, pipe, filter, unless } from 'ramda'
 import { derived, readable, writable } from 'svelte/store'
 import hotspots from '../../modules/hotspots.json'
-import {
-  filterDataWithValidHours,
-  filterOnDistanceToHotspot,
-  filterOnOpeningHours,
-} from '../../utilities/clock'
-import { distances, showInvalidOpeningHours, times, timeType } from './clock'
+import { localStorageIsSupported } from '../../utilities/data'
 
 const storedData = JSON.parse(localStorage.getItem('data'))
 
@@ -18,30 +12,13 @@ export const currentHotspot = derived(
   ([$hotspotData, $chosenHotspot]) =>
     $hotspotData.find(item => item.name === $chosenHotspot)
 )
-export const filteredData = derived(
-  [
-    rdwData,
-    distances,
-    times,
-    timeType,
-    showInvalidOpeningHours,
-    currentHotspot,
-  ],
-  ([
-    $rdwData,
-    $distances,
-    $times,
-    $timeType,
-    $showInvalidOpeningHours,
-    $currentHotspot,
-  ]) =>
-    pipe(
-      filter(filterOnDistanceToHotspot($distances, $currentHotspot.name)),
-      filter(filterOnOpeningHours($times, $timeType)),
-      unless(always($showInvalidOpeningHours), filter(filterDataWithValidHours))
-    )($rdwData)
-)
+
+export const times = writable([0, 12])
+export const distances = writable([0, 5])
+export const timeType = writable('opening')
+export const showInvalidOpeningHours = writable(false)
 
 rdwData.subscribe(val => {
-  localStorage.setItem('data', JSON.stringify(val))
+  if (localStorageIsSupported())
+    localStorage.setItem('data', JSON.stringify(val))
 })

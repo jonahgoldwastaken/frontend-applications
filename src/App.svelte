@@ -22,6 +22,9 @@
 
   :global(body) {
     margin: 0;
+  }
+
+  :global(:root) {
     font-family: 'PT Sans', sans-serif;
     line-height: 1.5;
   }
@@ -33,6 +36,4 @@
 </style>
 
 <H1>Hello world!</H1>
-<H2>Doei world!</H2>
-<H3>Hello again world!</H3>
 <Clock />

@@ -11,7 +11,7 @@
   let group
 
   $: angleScale = scaleLinear().domain([minAngle, maxAngle]).range([0, 360])
-  let angleData = expandArrayOfNumbers([minAngle, maxAngle])
+  $: angleData = expandArrayOfNumbers([minAngle, maxAngle])
 </script>
 
 <style>

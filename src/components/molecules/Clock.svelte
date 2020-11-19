@@ -1,14 +1,13 @@
 <script>
-  import ClockData from '../atoms/ClockData.svelte'
   import ClockAngle from '../atoms/ClockAngle.svelte'
-  import Toaster from '../atoms/Toaster.svelte'
-  import { distances, radius, times } from '../store/clock'
-  import ClockRadius from '../atoms/ClockRadius.svelte'
+  import ClockData from '../atoms/ClockData.svelte'
   import ClockHotspot from '../atoms/ClockHotspot.svelte'
+  import ClockRadius from '../atoms/ClockRadius.svelte'
+  import Toaster from '../atoms/Tooltip.svelte'
+  import { radius } from '../store/clock'
+  import { distances, times } from '../store/data'
 
   let svg
-  let toasterVisible = false
-  let toasterData = {}
 </script>
 
 <style>
@@ -26,11 +25,8 @@
       <ClockAngle minAngle={$times[0]} maxAngle={$times[1]} />
       <ClockRadius minRadius={$distances[0]} maxRadius={$distances[1]} />
       <ClockHotspot />
-      <ClockData {toasterVisible} />
+      <ClockData />
     </g>
   </svg>
-
-  {#if toasterVisible}
-    <Toaster />
-  {/if}
+  <Toaster />
 </div>
