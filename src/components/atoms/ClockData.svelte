@@ -1,7 +1,7 @@
 <script>
   import { lineRadial, selectAll } from 'd3'
   import { always, filter, pipe, unless } from 'ramda'
-  import { afterUpdate, beforeUpdate } from 'svelte'
+  import { afterUpdate } from 'svelte'
   import { derived } from 'svelte/store'
   import {
     filterDataWithValidHours,

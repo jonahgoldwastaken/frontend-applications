@@ -1,8 +1,7 @@
 <script>
-  import { expandArrayOfNumbers } from '../../utilities/clock'
   import { scaleLinear } from 'd3'
+  import { expandArrayOfNumbers } from '../../utilities/clock'
   import { distanceRadius } from '../store/clock'
-  import { onMount } from 'svelte'
 
   export let minRadius
   export let maxRadius
