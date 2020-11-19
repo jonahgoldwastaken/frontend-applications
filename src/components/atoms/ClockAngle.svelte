@@ -1,5 +1,6 @@
 <script>
   import { scaleLinear } from 'd3'
+  import { afterUpdate, onMount } from 'svelte'
   import { expandArrayOfNumbers } from '../../utilities/clock'
   import { radius } from '../store/clock'
 
@@ -11,7 +12,7 @@
   let group
 
   $: angleScale = scaleLinear().domain([minAngle, maxAngle]).range([0, 360])
-  $: angleData = expandArrayOfNumbers([minAngle, maxAngle])
+  $: angleData = expandArrayOfNumbers([minAngle, maxAngle]).slice(0, -1)
 </script>
 
 <style>

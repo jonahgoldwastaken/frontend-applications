@@ -1,15 +1,16 @@
 <script>
   import { expandArrayOfNumbers } from '../../utilities/clock'
   import { scaleLinear } from 'd3'
-  import { radius } from '../store/clock'
+  import { distanceRadius } from '../store/clock'
+  import { onMount } from 'svelte'
 
   export let minRadius
   export let maxRadius
 
   $: radiusScale = scaleLinear()
     .domain([minRadius, maxRadius])
-    .range([100, $radius])
-  let radiusData = expandArrayOfNumbers([minRadius, maxRadius]).slice(1)
+    .range([100, $distanceRadius])
+  $: radiusData = expandArrayOfNumbers([minRadius, maxRadius]).slice(1)
 </script>
 
 <style>

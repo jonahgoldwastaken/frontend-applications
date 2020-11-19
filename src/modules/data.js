@@ -132,12 +132,12 @@ function mapAddOpeningHoursAsKeyToArea(area) {
   return area.openingHours[0]
     ? area
     : 'description' in area
-    ? area.description.match(/\d+-\d+/)
+    ? area.description.match(/\d{2}-\d{2}/)
       ? {
           ...area,
           openingHours: [
-            area.description.match(/\d+-\d+/)[0].split('-')[0],
-            area.description.match(/\d+-\d+/)[0].split('-')[1],
+            +area.description.match(/\d{2}-\d{2}/)[0].split('-')[0],
+            +area.description.match(/\d{2}-\d{2}/)[0].split('-')[1],
           ],
         }
       : {

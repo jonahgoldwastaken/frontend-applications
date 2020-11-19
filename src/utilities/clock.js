@@ -10,21 +10,21 @@ export {
 /**
  * Maps out all whole numbers between two numbers over array
  *
- * @param {[number, number]} times Array with two numbers
+ * @param {[number, number]} numbersArray Array with two numbers
  * @returns {number[]} Mapped array
  */
-function expandArrayOfNumbers(times) {
+function expandArrayOfNumbers(numbersArray) {
   return reduce(
     (acc, curr) =>
       acc.length === 1
         ? acc.concat(
-            [...new Array(times[1] - times[0] - 1)].map(
+            [...new Array(numbersArray[1] - numbersArray[0])].map(
               (_, i) => i + 1 + acc[0]
             )
           )
         : [curr],
     []
-  )(times)
+  )(numbersArray)
 }
 
 /**
