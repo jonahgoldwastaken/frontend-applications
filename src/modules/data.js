@@ -18,14 +18,17 @@ import {
   zipObj,
 } from 'ramda'
 import { renameKeys } from 'ramda-adjunct'
+import { get } from 'svelte/store'
+import { hotspotData } from '../components/store/data'
 import { uri } from '../config/data'
 import { unwrapArrayValueAtIndex } from '../utilities/array'
 import { fetchData, parseResToJSON } from '../utilities/data.js'
 import { calculateHaversine } from '../utilities/geo-data'
 import { parseGeoData } from './geo-data.js'
-import hotspots from './hotspots.json'
 
 export { parseRDWData }
+
+const hotspots = get(hotspotData)
 
 async function parseRDWData() {
   return pipe(fetchAndParseMultipleJSON, andThen(parkingAreaMapper))(uri)

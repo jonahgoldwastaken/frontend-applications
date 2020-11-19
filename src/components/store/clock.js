@@ -5,6 +5,7 @@ export const dimension = readable(960)
 export const times = writable([0, 12])
 export const distances = writable([0, 5])
 export const timeType = writable('opening')
+export const showInvalidOpeningHours = writable(false)
 
 export const radius = derived(dimension, $dimension => $dimension / 2 - 30)
 export const distanceRadius = derived(

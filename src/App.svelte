@@ -7,8 +7,12 @@
   import H2 from './components/atoms/H2.svelte'
   import H3 from './components/atoms/H3.svelte'
   import Clock from './components/molecules/Clock.svelte'
+  import { get } from 'svelte/store'
 
-  onMount(() => parseRDWData().then(rdwData.set).catch(console.trace))
+  onMount(() => {
+    if (!get(rdwData).length)
+      parseRDWData().then(rdwData.set).catch(console.trace)
+  })
 </script>
 
 <style>

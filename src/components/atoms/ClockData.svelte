@@ -1,23 +1,22 @@
 <script>
-  import { afterUpdate, beforeUpdate } from 'svelte'
-  import { lineRadial, select } from 'd3'
-  import { rdwData } from '../store/data'
-  import { enterDots, updateDots } from '../../modules/clock.js'
-  import { angleScale, radiusScale, timeType } from '../store/clock'
+  import { lineRadial } from 'd3'
   import { derived } from 'svelte/store'
+  import { angleScale, radiusScale, timeType } from '../store/clock'
+  import { chosenHotspot, filteredData } from '../store/data'
 
   export let toasterVisible
 
-  let group, data
+  let group
+  let data
 
-  rdwData.subscribe(val => {
+  filteredData.subscribe(val => {
     data = val
   })
   const line = derived(
-    [angleScale, radiusScale],
-    ([$angleScale, $radiusScale]) =>
+    [angleScale, radiusScale, chosenHotspot],
+    ([$angleScale, $radiusScale, $chosenHotspot]) =>
       lineRadial()
-        .radius(d => $radiusScale(d.distanceToHotspot['Melkweg']))
+        .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
         .angle(d =>
           $angleScale(
             timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
