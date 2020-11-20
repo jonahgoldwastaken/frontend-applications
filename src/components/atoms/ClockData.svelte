@@ -1,73 +1,39 @@
 <script>
-  import { lineRadial, selectAll } from 'd3'
+  import { lineRadial } from 'd3'
   import { always, filter, pipe, unless } from 'ramda'
-  import { afterUpdate } from 'svelte'
-  import { derived } from 'svelte/store'
-  import {
-    filterDataWithValidHours,
-    filterOnDistanceToHotspot,
-    filterOnOpeningHours,
-  } from '../../utilities/clock'
   import {
     angleScale,
     currentParkingArea,
     radiusScale,
     tooltipVisible,
-  } from '../store/clock'
+  } from '../../store/clock'
   import {
     chosenHotspot,
-    currentHotspot,
     distances,
     rdwData,
     showInvalidOpeningHours,
     times,
     timeType,
-  } from '../store/data'
+  } from '../../store/data'
+  import {
+    filterDataWithValidHours,
+    filterOnDistanceToHotspot,
+    filterOnOpeningHours,
+  } from '../../utilities/clock'
 
   let group
-  $: data = derived(
-    [
-      rdwData,
-      distances,
-      times,
-      timeType,
-      showInvalidOpeningHours,
-      currentHotspot,
-    ],
-    ([
-      $rdwData,
-      $distances,
-      $times,
-      $timeType,
-      $showInvalidOpeningHours,
-      $currentHotspot,
-    ]) =>
-      pipe(
-        filter(filterOnDistanceToHotspot($distances, $currentHotspot.name)),
-        filter(filterOnOpeningHours($times, $timeType)),
-        unless(
-          always($showInvalidOpeningHours),
-          filter(filterDataWithValidHours)
-        )
-      )($rdwData)
-  )
-  $: line = derived(
-    [angleScale, radiusScale, chosenHotspot, timeType],
-    ([$angleScale, $radiusScale, $chosenHotspot, $timeType]) =>
-      lineRadial()
-        .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
-        .angle(d =>
-          $angleScale(
-            $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
-          )
-        )
-  )
-
-  afterUpdate(() => {
-    selectAll('.dot')
-      .on('mouseover', mouseOverHandler)
-      .on('mouseout', mouseOutHandler)
-  })
+  $: data = pipe(
+    filter(filterOnDistanceToHotspot($distances, $chosenHotspot)),
+    filter(filterOnOpeningHours($times, $timeType)),
+    unless(always($showInvalidOpeningHours), filter(filterDataWithValidHours))
+  )($rdwData)
+  $: line = lineRadial()
+    .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
+    .angle(d =>
+      $angleScale(
+        $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
+      )
+    )
 
   function mouseOverHandler(data) {
     return () => {
@@ -102,8 +68,8 @@
       class="dot"
       on:mouseover={mouseOverHandler(datum)}
       on:mouseout={mouseOutHandler}
-      class:dot-has-time={(timeType === 'opening' && datum.openingHours[0]) || (timeType === 'closing' && datum.openingHours[1])}
-      class:dot-has-no-time={(timeType === 'opening' && !datum.openingHours[0]) || (timeType === 'closing' && !datum.openingHours[1])}
+      class:dot-has-time={($timeType === 'opening' && datum.openingHours[0]) || (timeType === 'closing' && datum.openingHours[1])}
+      class:dot-has-no-time={($timeType === 'opening' && !datum.openingHours[0]) || (timeType === 'closing' && !datum.openingHours[1])}
       transform="translate({$line([datum]).slice(1).slice(0, -1)})"
       r="4" />
   {/each}

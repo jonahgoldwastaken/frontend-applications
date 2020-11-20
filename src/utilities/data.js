@@ -22,7 +22,8 @@ function localStorageIsSupported() {
     localStorage.setItem(test, test)
     localStorage.removeItem(test)
     return true
-  } catch {
+  } catch (err) {
+    console.log(err)
     return false
   }
 }

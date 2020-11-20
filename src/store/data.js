@@ -1,6 +1,6 @@
 import { derived, readable, writable } from 'svelte/store'
-import hotspots from '../../modules/hotspots.json'
-import { localStorageIsSupported } from '../../utilities/data'
+import hotspots from '../modules/hotspots.json'
+import { localStorageIsSupported } from '../utilities/data'
 
 const storedData = JSON.parse(localStorage.getItem('data'))
 
@@ -16,7 +16,7 @@ export const currentHotspot = derived(
 export const times = writable([0, 12])
 export const distances = writable([0, 5])
 export const timeType = writable('opening')
-export const showInvalidOpeningHours = writable(false)
+export const showInvalidOpeningHours = writable(true)
 
 rdwData.subscribe(val => {
   if (localStorageIsSupported())
