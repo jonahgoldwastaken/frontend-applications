@@ -26,7 +26,7 @@ export const rdwData = readable([], set => {
   const storedData = JSON.parse(localStorage.getItem('data'))
   if (!storedData) parseRDWData().then(set).catch(console.trace)
   else set(storedData)
-  return () => console.log('dag tientjes, en tientinnetjes!')
+  return () => {}
 })
 
 export const filteredData = derived(
