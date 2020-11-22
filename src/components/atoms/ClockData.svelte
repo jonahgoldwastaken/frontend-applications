@@ -41,8 +41,8 @@
       class="dot"
       on:mouseover={mouseOverHandler(datum)}
       on:mouseout={mouseOutHandler}
-      class:dot-has-time={($timeType === 'opening' && datum.openingHours[0]) || (timeType === 'closing' && datum.openingHours[1])}
-      class:dot-has-no-time={($timeType === 'opening' && !datum.openingHours[0]) || (timeType === 'closing' && !datum.openingHours[1])}
+      class:dot-has-time={($timeType === 'opening' && datum.openingHours[0]) || ($timeType === 'closing' && datum.openingHours[1])}
+      class:dot-has-no-time={($timeType === 'opening' && !datum.openingHours[0]) || ($timeType === 'closing' && !datum.openingHours[1])}
       transform="translate({$radialLine([datum]).slice(1).slice(0, -1)})"
       r="4" />
   {/each}
