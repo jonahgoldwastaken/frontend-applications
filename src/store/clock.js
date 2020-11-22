@@ -1,6 +1,6 @@
-import { scaleLinear } from 'd3'
+import { lineRadial, scaleLinear } from 'd3'
 import { derived, readable, writable } from 'svelte/store'
-import { distances, times } from './data'
+import { chosenHotspot, distances, times, timeType } from './data'
 
 export const dimension = readable(960)
 
@@ -18,6 +18,17 @@ export const radiusScale = derived(
   [distances, distanceRadius],
   ([$distances, $distanceRadius]) =>
     scaleLinear().domain($distances).range([100, $distanceRadius])
+)
+export const radialLine = derived(
+  [radiusScale, chosenHotspot, angleScale, timeType],
+  ([$radiusScale, $chosenHotspot, $angleScale, $timeType]) =>
+    lineRadial()
+      .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
+      .angle(d =>
+        $angleScale(
+          $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
+        )
+      )
 )
 export const currentParkingArea = writable({})
 export const tooltipVisible = writable(false)

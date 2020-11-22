@@ -1,26 +1,17 @@
 <script>
-  import { lineRadial } from 'd3'
-  import { derived } from 'svelte/store'
   import {
-    angleScale,
     currentParkingArea,
-    radiusScale,
+    radialLine,
     tooltipVisible,
   } from '../../store/clock'
-  import { chosenHotspot, filteredData, timeType } from '../../store/data'
+  import { filteredData, timeType } from '../../store/data'
 
   let group
-  let line = derived(
-    [radiusScale, chosenHotspot, angleScale, timeType],
-    ([$radiusScale, $chosenHotspot, $angleScale, $timeType]) =>
-      lineRadial()
-        .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
-        .angle(d =>
-          $angleScale(
-            $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
-          )
-        )
-  )
+  let line
+
+  radialLine.subscribe(val => {
+    line = val
+  })
 
   function mouseOverHandler(data) {
     return () => {
@@ -57,7 +48,7 @@
       on:mouseout={mouseOutHandler}
       class:dot-has-time={($timeType === 'opening' && datum.openingHours[0]) || (timeType === 'closing' && datum.openingHours[1])}
       class:dot-has-no-time={($timeType === 'opening' && !datum.openingHours[0]) || (timeType === 'closing' && !datum.openingHours[1])}
-      transform="translate({$line([datum]).slice(1).slice(0, -1)})"
+      transform="translate({line([datum]).slice(1).slice(0, -1)})"
       r="4" />
   {/each}
 </g>
