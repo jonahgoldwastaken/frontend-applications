@@ -4,8 +4,8 @@
   import ClockHotspot from '../atoms/ClockHotspot.svelte'
   import ClockRadius from '../atoms/ClockRadius.svelte'
   import Toaster from '../atoms/Tooltip.svelte'
-  import { radius } from '../store/clock'
-  import { distances, times } from '../store/data'
+  import { radius } from '../../store/clock'
+  import { distances, times } from '../../store/data'
 
   let svg
 </script>

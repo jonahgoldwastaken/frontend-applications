@@ -1,39 +1,26 @@
 <script>
   import { lineRadial } from 'd3'
-  import { always, filter, pipe, unless } from 'ramda'
+  import { derived } from 'svelte/store'
   import {
     angleScale,
     currentParkingArea,
     radiusScale,
     tooltipVisible,
   } from '../../store/clock'
-  import {
-    chosenHotspot,
-    distances,
-    rdwData,
-    showInvalidOpeningHours,
-    times,
-    timeType,
-  } from '../../store/data'
-  import {
-    filterDataWithValidHours,
-    filterOnDistanceToHotspot,
-    filterOnOpeningHours,
-  } from '../../utilities/clock'
+  import { chosenHotspot, filteredData, timeType } from '../../store/data'
 
   let group
-  $: data = pipe(
-    filter(filterOnDistanceToHotspot($distances, $chosenHotspot)),
-    filter(filterOnOpeningHours($times, $timeType)),
-    unless(always($showInvalidOpeningHours), filter(filterDataWithValidHours))
-  )($rdwData)
-  $: line = lineRadial()
-    .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
-    .angle(d =>
-      $angleScale(
-        $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
-      )
-    )
+  let line = derived(
+    [radiusScale, chosenHotspot, angleScale, timeType],
+    ([$radiusScale, $chosenHotspot, $angleScale, $timeType]) =>
+      lineRadial()
+        .radius(d => $radiusScale(d.distanceToHotspot[$chosenHotspot]))
+        .angle(d =>
+          $angleScale(
+            $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
+          )
+        )
+  )
 
   function mouseOverHandler(data) {
     return () => {
@@ -63,7 +50,7 @@
 </style>
 
 <g bind:this={group} class="data-group">
-  {#each $data as datum, index (datum.id + datum.description + index)}
+  {#each $filteredData as datum, index (datum.id + datum.description + index)}
     <circle
       class="dot"
       on:mouseover={mouseOverHandler(datum)}

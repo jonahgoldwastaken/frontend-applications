@@ -1,6 +1,6 @@
 <script>
-  import { currentParkingArea, tooltipVisible } from '../store/clock'
-  import { chosenHotspot } from '../store/data'
+  import { currentParkingArea, tooltipVisible } from '../../store/clock'
+  import { chosenHotspot } from '../../store/data'
 
   let pageX
   let pageY

@@ -1,5 +1,5 @@
 <script>
-  import { chosenHotspot } from '../store/data'
+  import { chosenHotspot } from '../../store/data'
 </script>
 
 <style>
