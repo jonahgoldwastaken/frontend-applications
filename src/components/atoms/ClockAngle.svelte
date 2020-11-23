@@ -1,7 +1,7 @@
 <script>
   import { scaleLinear } from 'd3'
   import { expandArrayOfNumbers } from '../../utilities/clock'
-  import { radius } from '../../store/clock'
+  import { dimension, radius } from '../../store/clock'
 
   export let minAngle
   export let maxAngle
@@ -34,7 +34,7 @@
 <g bind:this={group} class="angle-group">
   {#each angleData as datum}
     <g transform="rotate({angleScale(datum)})">
-      <line x1="100" x2={$radius - lineMargin} class="angle-line" />
+      <line x1={$dimension / 10} x2={$radius - lineMargin} class="angle-line" />
       <text
         text-anchor="middle"
         alignment-baseline="middle"

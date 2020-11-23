@@ -1,14 +1,14 @@
 <script>
   import { scaleLinear } from 'd3'
   import { expandArrayOfNumbers } from '../../utilities/clock'
-  import { distanceRadius } from '../../store/clock'
+  import { dimension, distanceRadius } from '../../store/clock'
 
   export let minRadius
   export let maxRadius
 
   $: radiusScale = scaleLinear()
     .domain([minRadius, maxRadius])
-    .range([100, $distanceRadius])
+    .range([$dimension / 10, $distanceRadius])
   $: radiusData = expandArrayOfNumbers([minRadius, maxRadius]).slice(1)
 </script>
 

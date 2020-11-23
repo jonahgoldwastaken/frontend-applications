@@ -1,11 +1,14 @@
 <script>
+  import { dimension } from '../../store/clock'
+
   import { chosenHotspot } from '../../store/data'
 </script>
 
 <style>
   .hotspot {
-    width: 200px;
-    height: 200px;
+    --dimension: 200px;
+    width: var(--dimension);
+    height: var(--dimension);
   }
   .hotspot__background {
     fill: black;
@@ -25,7 +28,7 @@
   }
 </style>
 
-<g class="hotspot">
-  <circle r="100" class="hotspot__background" />
+<g style="--dimension: {$dimension / 5}" class="hotspot">
+  <circle r={$dimension / 10} class="hotspot__background" />
   <text class="hotspot__text">{$chosenHotspot}</text>
 </g>
