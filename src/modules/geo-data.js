@@ -16,7 +16,7 @@ import { removeFromString, splitStringOn } from '../utilities/string'
 
 export { parseGeoData }
 
-function parseGeoData(geoData) {
+function parseGeoData({ areageometryastext }) {
   return pipe(
     splitStringOn(' '),
     map(
@@ -27,7 +27,7 @@ function parseGeoData(geoData) {
       )
     ),
     ifElse(isGeoDataPoint, parseGeoPoint, parseGeoPolygon)
-  )(geoData)
+  )(areageometryastext)
 }
 
 function parseGeoPoint(pointData) {

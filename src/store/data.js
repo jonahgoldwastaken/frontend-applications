@@ -7,7 +7,6 @@ import {
   filterOnDistanceToHotspot,
   filterOnOpeningHours,
 } from '../utilities/clock'
-import { localStorageIsSupported } from '../utilities/data'
 
 export const hotspotData = readable(hotspots)
 export const chosenHotspot = writable('Melkweg')
@@ -22,11 +21,25 @@ export const distances = writable([0, 5])
 export const timeType = writable('opening')
 export const showInvalidOpeningHours = writable(true)
 
-export const rdwData = readable([], set => {
-  const storedData = JSON.parse(localStorage.getItem('data'))
-  if (!storedData) parseRDWData().then(set).catch(console.trace)
-  else set(storedData)
-  return () => {}
+const pageLoadedAmount = () => {
+  const storedAmount = localStorage.getItem('loadAmt')
+  if (+storedAmount > 9) {
+    localStorage.setItem('loadAmt', 0)
+    return 0
+  }
+  localStorage.setItem('loadAmt', +storedAmount + 1)
+  return +storedAmount + 1
+}
+
+const rdwData = readable([], set => {
+  if (pageLoadedAmount() === 0) {
+    parseRDWData().then(set).catch(console.trace)
+  } else {
+    const storedData = JSON.parse(localStorage.getItem('data'))
+    if (!storedData || !storedData.length)
+      parseRDWData().then(set).catch(console.trace)
+    else set(storedData)
+  }
 })
 
 export const filteredData = derived(
@@ -48,6 +61,9 @@ export const filteredData = derived(
 )
 
 rdwData.subscribe(val => {
-  if (localStorageIsSupported())
+  try {
     localStorage.setItem('data', JSON.stringify(val))
+  } catch {
+    console.log('data not saved')
+  }
 })

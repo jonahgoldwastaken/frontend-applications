@@ -2,28 +2,31 @@ import {
   always,
   andThen,
   assoc,
-  filter,
+  both,
   find,
+  has,
   ifElse,
   isNil,
+  lensProp,
   map,
-  omit,
+  mergeRight,
   otherwise,
   pick,
   pipe,
   project,
   prop,
   propEq,
-  values,
+  set,
+  unless,
   zipObj,
+  __,
 } from 'ramda'
-import { renameKeys } from 'ramda-adjunct'
-import hotspots from './hotspots.json'
+import { isNotNil, isNull, renameKeys } from 'ramda-adjunct'
 import { uri } from '../config/data'
-import { unwrapArrayValueAtIndex } from '../utilities/array'
 import { fetchData, parseResToJSON } from '../utilities/data.js'
 import { calculateHaversine } from '../utilities/geo-data'
 import { parseGeoData } from './geo-data.js'
+import hotspots from './hotspots.json'
 
 export { parseRDWData }
 
@@ -46,76 +49,61 @@ const parkingAreaLookupTable = {
 
 function parkingAreaMapper(data) {
   return pipe(
+    map(
+      pipe(
+        combineDataSet(data[1]),
+        combineDataSet(data[2]),
+        combineDataSet(data[3]),
+        renameKeys(parkingAreaLookupTable)
+      )
+    ),
     map(val =>
       pipe(
-        renameKeys(parkingAreaLookupTable),
-        omit(['startdatearea', 'enddatearea', 'usageid', 'areamanagerid']),
-        assoc('usage', associateUsageGoal(data[1], val)),
-        assoc('capacity', associateSpecifications(data[2], val)),
-        assoc('coordinates', associateCoordinates(data[3], val)),
-        assoc('openingHours', associateParkingEntrance(data[4], val))
+        assoc('coordinates', parseCoordinates(val)),
+        assoc('openingHours', parseParkingEntrance(val))
       )(val)
     ),
     map(val =>
-      assoc(
-        'distanceToHotspot',
-        associateDistancesToHotspots(hotspots, val)
+      pipe(
+        assoc('distanceToHotspot', associateDistancesToHotspots(hotspots, val)),
+        mapAddOpeningHoursAsKeyToArea
       )(val)
     ),
-    map(mapAddOpeningHoursAsKeyToArea),
-    filter(filterInvalidCoordinates)
+    project([
+      'id',
+      'description',
+      'capacity',
+      'openingHours',
+      'coordinates',
+      'distanceToHotspot',
+    ]),
+    map(parseInvalidValues)
   )(data[0])
 }
 
-function associateUsageGoal(goals, area) {
-  return pipe(
-    find(propEq('usageid', area.usageid)),
-    ifElse(
-      isNil,
-      always('Heeft geen gebruiksdoel'),
-      pipe(pick(['usageiddesc']), values, unwrapArrayValueAtIndex(0))
-    )
-  )(goals)
+function combineDataSet(data) {
+  return area =>
+    pipe(find(propEq('areaid', area.areaid)), mergeRight(area))(data)
 }
 
-function associateSpecifications(specs, area) {
+function parseCoordinates(area) {
   return pipe(
-    find(propEq('areaid', area.areaid)),
     ifElse(
-      isNil,
-      always(0),
-      prop('capacity'),
-      unwrapArrayValueAtIndex(0),
-      Number
+      has('areageometryastext'),
+      parseGeoData,
+      always({ long: Infinity, lat: Infinity })
     )
-  )(specs)
+  )(area)
 }
 
-function associateCoordinates(geoData, area) {
+function parseParkingEntrance(area) {
   return pipe(
-    find(propEq('areaid', area.areaid)),
     ifElse(
-      isNil,
-      always({ long: Infinity, lat: Infinity }),
-      pipe(
-        pick(['areageometryastext']),
-        values,
-        unwrapArrayValueAtIndex(0),
-        parseGeoData
-      )
+      both(has('enterfrom'), has('enteruntil')),
+      pipe(pick(['enterfrom', 'enteruntil']), Object.values),
+      always([null, null])
     )
-  )(geoData)
-}
-
-function associateParkingEntrance(entrance, area) {
-  return pipe(
-    find(propEq('areaid', area.areaid)),
-    ifElse(
-      isNil,
-      always([null, null]),
-      pipe(pick(['enterfrom', 'enteruntil']), Object.values)
-    )
-  )(entrance)
+  )(area)
 }
 
 function associateDistancesToHotspots(hotspots, area) {
@@ -144,6 +132,7 @@ function mapAddOpeningHoursAsKeyToArea(area) {
     : area
 }
 
-function filterInvalidCoordinates(area) {
-  return area.coordinates.long != Infinity
+function parseInvalidValues(area) {
+  const capacity = isNil(area.capacity) ? 0 : +area.capacity
+  return pipe(set(lensProp('capacity'), capacity))(area)
 }
