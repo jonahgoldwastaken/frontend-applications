@@ -9,15 +9,13 @@
     pageX = e.pageX
     pageY = e.pageY
   }
-
-  $: currentData = $currentParkingArea
-  $: hotspotName = $chosenHotspot
 </script>
 
 <style>
   div {
     --x: 0px;
     --y: 0px;
+    display: none;
     position: fixed;
     top: var(--y);
     left: var(--x);
@@ -34,25 +32,25 @@
   }
 </style>
 
-<svelte:body on:mousemove={handleMouseMove} />
+<svelte:body on:mousemove|passive={handleMouseMove} />
 
 {#if $tooltipVisible}
   <div style="--x: {pageX}px; --y: {pageY}px">
     <ul>
       <li>
         Afstand tot
-        {hotspotName}:
-        {currentData.distanceToHotspot[hotspotName]}km
+        {$chosenHotspot}:
+        {$currentParkingArea.distanceToHotspot[$chosenHotspot]}km
       </li>
-      <li>Capaciteit: {currentData.capacity}</li>
+      <li>Capaciteit: {$currentParkingArea.capacity}</li>
       <li>
         Openingstijd:
-        {currentData.openingHours[0] < 10 ? `0${currentData.openingHours[0]}` : currentData.openingHours[0]}:00
+        {$currentParkingArea.openingHours[0] < 10 ? `0${$currentParkingArea.openingHours[0]}` : $currentParkingArea.openingHours[0]}:00
         uur
       </li>
       <li>
         Sluitingstijd:
-        {currentData.openingHours[1] < 10 ? `0${currentData.openingHours[1]}` : currentData.openingHours[1]}:00
+        {$currentParkingArea.openingHours[1] < 10 ? `0${$currentParkingArea.openingHours[1]}` : $currentParkingArea.openingHours[1]}:00
         uur
       </li>
       <li />

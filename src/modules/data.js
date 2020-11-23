@@ -17,11 +17,9 @@ import {
   prop,
   propEq,
   set,
-  unless,
   zipObj,
-  __,
 } from 'ramda'
-import { isNotNil, isNull, renameKeys } from 'ramda-adjunct'
+import { renameKeys } from 'ramda-adjunct'
 import { uri } from '../config/data'
 import { fetchData, parseResToJSON } from '../utilities/data.js'
 import { calculateHaversine } from '../utilities/geo-data'

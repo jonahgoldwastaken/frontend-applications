@@ -1,6 +1,6 @@
 <script>
   import H1 from './components/atoms/H1.svelte'
-  import Clock from './components/molecules/Clock.svelte'
+  import Clock from './components/organisms/Clock.svelte'
   import { filteredData } from './store/data'
 </script>
 
@@ -24,9 +24,5 @@
   }
 </style>
 
-{#if !$filteredData.length}
-  <p>Loading</p>
-{:else}
-  <H1>Hello world!</H1>
-  <Clock />
-{/if}
+<H1>Hello world!</H1>
+<Clock />
