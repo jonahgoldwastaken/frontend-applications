@@ -1,7 +1,6 @@
 <script>
   import H1 from './components/atoms/H1.svelte'
   import Clock from './components/organisms/Clock.svelte'
-  import { filteredData } from './store/data'
 </script>
 
 <style>

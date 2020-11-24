@@ -1,7 +1,7 @@
 <script>
   import { scaleLinear } from 'd3'
-  import { expandArrayOfNumbers } from '../../utilities/clock'
   import { dimension, distanceRadius } from '../../store/clock'
+  import { expandArrayOfNumbers } from '../../utilities/clock'
 
   export let minRadius
   export let maxRadius

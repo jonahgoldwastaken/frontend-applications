@@ -1,5 +1,4 @@
 <script>
-  import { dimension } from '../../store/clock'
   import { chosenHotspot, distances, times } from '../../store/data'
   import ClockAngle from '../atoms/ClockAngle.svelte'
   import ClockCenter from '../atoms/ClockCenter.svelte'

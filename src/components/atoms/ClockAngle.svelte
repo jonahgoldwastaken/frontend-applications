@@ -1,5 +1,5 @@
 <script>
-  import { scaleLinear, range } from 'd3'
+  import { range, scaleLinear } from 'd3'
   import { dimension, distanceRadius, radius } from '../../store/clock'
 
   export let minAngle

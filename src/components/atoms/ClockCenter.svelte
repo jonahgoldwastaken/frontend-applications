@@ -1,6 +1,5 @@
 <script>
   import { dimension } from '../../store/clock'
-  import { chosenHotspot } from '../../store/data'
 </script>
 
 <style>
