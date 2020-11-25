@@ -7,6 +7,7 @@ import {
   filterOnDistanceToHotspot,
   filterOnOpeningHours,
 } from '../utilities/clock'
+import { retrieveLocalData, storeData } from '../utilities/data'
 
 export const hotspotData = readable(hotspots)
 export const chosenHotspot = writable('Melkweg')
@@ -35,9 +36,8 @@ const rdwData = readable([], set => {
   if (pageLoadedAmount() === 0) {
     parseRDWData().then(set).catch(console.trace)
   } else {
-    const storedData = JSON.parse(localStorage.getItem('data'))
-    if (!storedData || !storedData.length)
-      parseRDWData().then(set).catch(console.trace)
+    const storedData = retrieveLocalData()
+    if (!storedData) parseRDWData().then(set).catch(console.trace)
     else set(storedData)
   }
 })
@@ -60,10 +60,4 @@ export const filteredData = derived(
   []
 )
 
-rdwData.subscribe(val => {
-  try {
-    localStorage.setItem('data', JSON.stringify(val))
-  } catch {
-    console.log('data not saved')
-  }
-})
+rdwData.subscribe(storeData)

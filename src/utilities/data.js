@@ -1,4 +1,4 @@
-export { fetchData, parseResToJSON, localStorageIsSupported }
+export { fetchData, parseResToJSON, storeData, retrieveLocalData }
 
 /**
  * Fetches data from url
@@ -16,14 +16,34 @@ function parseResToJSON(res) {
   return res.json()
 }
 
-function localStorageIsSupported() {
+/**
+ * Takes a data array, and saves it to localStorage or cookie
+ * @param {object[]} data Data array
+ * @returns {boolean}
+ */
+function storeData(data) {
+  const dataString = JSON.stringify(data)
   try {
-    const test = 'test'
-    localStorage.setItem(test, test)
-    localStorage.removeItem(test)
+    localStorage.setItem('data', dataString)
     return true
-  } catch (err) {
-    console.log(err)
-    return false
+  } catch {
+    try {
+      document.cookie = `data=${dataString}; expires=Fri, 31 Dec 9999 23:59:59 GMT`
+      return true
+    } catch {
+      return false
+    }
+  }
+}
+
+function retrieveLocalData() {
+  try {
+    const localStorageData = JSON.parse(localStorage.getItem('data'))
+    if (localStorageData && localStorageData.length) return localStorageData
+    const cookieData = JSON.parse(document.cookie.split(';')[0].split('=')[1])
+    if (cookieData && cookieData.length) return cookieData
+    return null
+  } catch {
+    return null
   }
 }

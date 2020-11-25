@@ -6,9 +6,22 @@
   import SecondsHand from '../atoms/SecondsHand.svelte'
 </script>
 
-<ClockOutline>
-  <HoursHand />
-  <MinutesHand />
-  <SecondsHand />
-  <ClockCenter>Laden</ClockCenter>
-</ClockOutline>
+<style>
+  div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white;
+  }
+</style>
+
+<div>
+  <ClockOutline>
+    <HoursHand />
+    <MinutesHand />
+    <SecondsHand />
+    <ClockCenter>Laden</ClockCenter>
+  </ClockOutline>
+</div>

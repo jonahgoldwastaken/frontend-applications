@@ -1,11 +1,6 @@
 <script>
   import { lineRadial, scaleLinear } from 'd3'
-  import {
-    currentParkingArea,
-    dimension,
-    distanceRadius,
-    tooltipVisible,
-  } from '../../store/clock'
+  import { dimension, distanceRadius } from '../../store/clock'
   import {
     chosenHotspot,
     distances,
@@ -14,6 +9,8 @@
     timeType,
   } from '../../store/data'
 
+  export let mouseover
+  export let mouseout
   let group
 
   $: angleScale = scaleLinear()
@@ -29,17 +26,6 @@
         $timeType === 'opening' ? d.openingHours[0] : d.openingHours[1]
       )
     )
-
-  function mouseOverHandler(data) {
-    return () => {
-      currentParkingArea.set(data)
-      tooltipVisible.set(true)
-    }
-  }
-
-  function mouseOutHandler() {
-    tooltipVisible.set(false)
-  }
 </script>
 
 <style>
@@ -61,8 +47,8 @@
   {#each $filteredData as datum, index (datum.id + datum.description + index)}
     <circle
       class="dot"
-      on:mouseover={mouseOverHandler(datum)}
-      on:mouseout={mouseOutHandler}
+      on:mouseover={mouseover(datum)}
+      on:mouseout={mouseout}
       class:dot-has-time={($timeType === 'opening' && datum.openingHours[0]) || ($timeType === 'closing' && datum.openingHours[1])}
       class:dot-has-no-time={($timeType === 'opening' && !datum.openingHours[0]) || ($timeType === 'closing' && !datum.openingHours[1])}
       transform="translate({radialLine([datum]).slice(1).slice(0, -1)})"

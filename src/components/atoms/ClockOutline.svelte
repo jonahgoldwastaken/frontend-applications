@@ -3,6 +3,10 @@
 </script>
 
 <style>
+  svg {
+    width: 100%;
+    height: 100%;
+  }
   .clock {
     fill: none;
     stroke: black;

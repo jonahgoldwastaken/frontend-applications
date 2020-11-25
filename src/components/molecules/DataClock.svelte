@@ -6,6 +6,18 @@
   import ClockOutline from '../atoms/ClockOutline.svelte'
   import ClockRadius from '../atoms/ClockRadius.svelte'
   import Tooltip from '../atoms/Tooltip.svelte'
+
+  let currentParkingArea = null
+
+  function mouseOverHandler(data) {
+    return () => {
+      currentParkingArea = data
+    }
+  }
+
+  function mouseOutHandler() {
+    currentParkingArea = null
+  }
 </script>
 
 <div>
@@ -16,7 +28,7 @@
       textFormatter={d => (d > 12 ? d + 'PM' : d === 0 ? '12AM' : d + 'AM')} />
     <ClockRadius minRadius={$distances[0]} maxRadius={$distances[1]} />
     <ClockCenter>{$chosenHotspot}</ClockCenter>
-    <ClockData />
+    <ClockData mouseover={mouseOverHandler} mouseout={mouseOutHandler} />
   </ClockOutline>
-  <Tooltip />
+  <Tooltip bind:currentParkingArea />
 </div>
