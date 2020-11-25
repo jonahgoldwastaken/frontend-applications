@@ -1,12 +1,6 @@
-import { always, filter, pipe, unless } from 'ramda'
 import { derived, readable, writable } from 'svelte/store'
 import { parseRDWData } from '../modules/data'
 import hotspots from '../modules/hotspots.json'
-import {
-  filterDataWithValidHours,
-  filterOnDistanceToHotspot,
-  filterOnOpeningHours,
-} from '../utilities/clock'
 import { retrieveLocalData, storeData } from '../utilities/data'
 
 export const hotspotData = readable(hotspots)
@@ -32,32 +26,23 @@ const pageLoadedAmount = () => {
   return +storedAmount + 1
 }
 
-const rdwData = readable([], set => {
+export const rdwData = readable(new Promise(() => {}), set => {
   if (pageLoadedAmount() === 0) {
-    parseRDWData().then(set).catch(console.trace)
+    parseRDWData()
+      .then(data => {
+        storeData(data)
+        set(data)
+      })
+      .catch(console.trace)
   } else {
     const storedData = retrieveLocalData()
-    if (!storedData) parseRDWData().then(set).catch(console.trace)
+    if (!storedData)
+      parseRDWData()
+        .then(data => {
+          storeData(data)
+          set(data)
+        })
+        .catch(console.trace)
     else set(storedData)
   }
 })
-
-export const filteredData = derived(
-  [distances, chosenHotspot, times, timeType, showInvalidOpeningHours, rdwData],
-  ([
-    $distances,
-    $chosenHotspot,
-    $times,
-    $timeType,
-    $showInvalidOpeningHours,
-    $rdwData,
-  ]) =>
-    pipe(
-      filter(filterOnDistanceToHotspot($distances, $chosenHotspot)),
-      filter(filterOnOpeningHours($times, $timeType)),
-      unless(always($showInvalidOpeningHours), filter(filterDataWithValidHours))
-    )($rdwData),
-  []
-)
-
-rdwData.subscribe(storeData)

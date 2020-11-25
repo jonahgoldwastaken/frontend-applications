@@ -1,6 +1,7 @@
 <script>
-  import H1 from './components/atoms/H1.svelte'
-  import Clock from './components/organisms/Clock.svelte'
+  import LoadingClock from './components/molecules/LoadingClock.svelte'
+  import Article from './components/organisms/Article.svelte'
+  import { rdwData } from './store/data'
 </script>
 
 <style>
@@ -23,8 +24,8 @@
   }
 </style>
 
-<H1>
-  Hoe goed worden verschillende bevolkingsgroepen gerepresenteerd als het gaat
-  om parkeermogelijkheden voor aantrekkelijke locaties (hot-spots)?
-</H1>
-<Clock />
+{#await $rdwData}
+  <LoadingClock />
+{:then}
+  <Article />
+{/await}

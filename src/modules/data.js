@@ -117,14 +117,6 @@ function associateDistancesToHotspots(hotspots, area) {
 
 function parseOpeningHourStrings(time) {
   const numbers = time.split('')
-  console.log(
-    numbers,
-    numbers.length > 3
-      ? Number(numbers[0] + numbers[1]) + Number(numbers[2] + numbers[3]) / 60
-      : numbers.length === 1
-      ? +numbers[0]
-      : +numbers[0] + Number(numbers[1] + numbers[2]) / 60
-  )
   return numbers.length > 3
     ? Number(numbers[0] + numbers[1]) + Number(numbers[2] + numbers[3]) / 60
     : numbers.length === 1
