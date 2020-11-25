@@ -29,7 +29,7 @@
   .angle-text {
     text-anchor: middle;
     alignment-baseline: middle;
-    font: 700 18px sans-serif;
+    font: 700 18px 'PT Sans';
   }
 </style>
 

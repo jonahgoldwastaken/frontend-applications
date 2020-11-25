@@ -10,7 +10,7 @@ import {
 import { retrieveLocalData, storeData } from '../utilities/data'
 
 export const hotspotData = readable(hotspots)
-export const chosenHotspot = writable('Melkweg')
+export const chosenHotspot = writable('De Dam')
 export const currentHotspot = derived(
   [hotspotData, chosenHotspot],
   ([$hotspotData, $chosenHotspot]) =>
@@ -18,7 +18,7 @@ export const currentHotspot = derived(
 )
 
 export const times = writable([0, 12])
-export const distances = writable([0, 5])
+export const distances = writable([0, 1])
 export const timeType = writable('opening')
 export const showInvalidOpeningHours = writable(true)
 

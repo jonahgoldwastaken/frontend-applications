@@ -36,6 +36,10 @@ function storeData(data) {
   }
 }
 
+/**
+ * Retrieves the data from localStorage
+ * @returns {object[]|null} The data from localStorage or cookies or nothing if there is none
+ */
 function retrieveLocalData() {
   try {
     const localStorageData = JSON.parse(localStorage.getItem('data'))

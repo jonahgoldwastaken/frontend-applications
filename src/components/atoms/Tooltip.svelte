@@ -6,8 +6,8 @@
   export let currentParkingArea = null
 
   function handleMouseMove(e) {
-    pageX = e.pageX
-    pageY = e.pageY
+    pageX = e.pageX - window.scrollX
+    pageY = e.pageY - window.scrollY
   }
 </script>
 
@@ -44,12 +44,12 @@
       <li>Capaciteit: {currentParkingArea.capacity}</li>
       <li>
         Openingstijd:
-        {currentParkingArea.openingHours[0] < 10 ? `0${currentParkingArea.openingHours[0]}` : currentParkingArea.openingHours[0]}:00
+        {currentParkingArea.openingHours[0] < 10 ? `0${currentParkingArea.openingHours[0]}` : currentParkingArea.openingHours[0]}:{currentParkingArea.openingHours[0] % 1 ? (currentParkingArea.openingHours[0] % 1) * 60 : '00'}
         uur
       </li>
       <li>
         Sluitingstijd:
-        {currentParkingArea.openingHours[1] < 10 ? `0${currentParkingArea.openingHours[1]}` : currentParkingArea.openingHours[1]}:00
+        {currentParkingArea.openingHours[1] < 10 ? `0${currentParkingArea.openingHours[1]}` : currentParkingArea.openingHours[1]}:{currentParkingArea.openingHours[1] % 1 ? (currentParkingArea.openingHours[1] % 1) * 60 : '00'}
         uur
       </li>
       <li />

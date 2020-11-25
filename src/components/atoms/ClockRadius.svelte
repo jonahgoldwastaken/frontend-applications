@@ -1,7 +1,6 @@
 <script>
-  import { scaleLinear } from 'd3'
+  import { range, scaleLinear } from 'd3'
   import { dimension, distanceRadius } from '../../store/clock'
-  import { expandArrayOfNumbers } from '../../utilities/clock'
 
   export let minRadius
   export let maxRadius
@@ -9,7 +8,9 @@
   $: radiusScale = scaleLinear()
     .domain([minRadius, maxRadius])
     .range([$dimension / 10, $distanceRadius])
-  $: radiusData = expandArrayOfNumbers([minRadius, maxRadius]).slice(1)
+  $: radiusData = range(minRadius, maxRadius, (maxRadius - minRadius) / 5)
+    .concat(maxRadius)
+    .slice(1)
 </script>
 
 <style>
@@ -21,7 +22,7 @@
   }
 
   .radius-text {
-    font: 500 12px sans-serif;
+    font: 500 12px 'PT Sans';
     text-anchor: middle;
     fill: black;
   }
@@ -34,7 +35,7 @@
       class="radius-text"
       y={-radiusScale(datum) - 5}
       transform="rotate(15)">
-      {datum}km
+      {Number.isInteger(datum) ? datum : datum.toFixed(2)}km
     </text>
   {/each}
 </g>

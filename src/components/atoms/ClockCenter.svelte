@@ -14,7 +14,7 @@
   }
   .center__text {
     width: 100%;
-    font: 700 24px sans-serif;
+    font: 700 24px 'PT Sans';
     text-anchor: middle;
     dominant-baseline: middle;
     fill: white;

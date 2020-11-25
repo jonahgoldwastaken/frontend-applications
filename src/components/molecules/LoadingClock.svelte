@@ -1,9 +1,7 @@
 <script>
   import ClockCenter from '../atoms/ClockCenter.svelte'
+  import ClockHands from '../atoms/ClockHands.svelte'
   import ClockOutline from '../atoms/ClockOutline.svelte'
-  import HoursHand from '../atoms/HoursHand.svelte'
-  import MinutesHand from '../atoms/MinutesHand.svelte'
-  import SecondsHand from '../atoms/SecondsHand.svelte'
 </script>
 
 <style>
@@ -19,9 +17,7 @@
 
 <div>
   <ClockOutline>
-    <HoursHand />
-    <MinutesHand />
-    <SecondsHand />
+    <ClockHands />
     <ClockCenter>Laden</ClockCenter>
   </ClockOutline>
 </div>

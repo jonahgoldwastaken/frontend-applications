@@ -2,141 +2,178 @@
   {
     "name": "Melkweg",
     "lat": "52.364790",
-    "long": "4.881245"
+    "long": "4.881245",
+    "audience": "Concertgangers"
   },
   {
     "name": "NEMO",
     "lat": "52.374334",
-    "long": "4.912231"
+    "long": "4.912231",
+    "audience": "Kinderen"
   },
   {
     "name": "Concertgebouw",
     "lat": "52.356314",
-    "long": "4.879059"
+    "long": "4.879059",
+    "audience": "Ouderen"
   },
   {
     "name": "Rijksmuseum",
     "lat": "52.360043",
-    "long": "4.885225"
+    "long": "4.885225",
+    "audience": "Iedereen"
   },
   {
     "name": "ARTIS",
     "lat": "52.366021",
-    "long": "4.916573"
+    "long": "4.916573",
+    "audience": "Iedereen"
   },
   {
     "name": "De Dam",
     "lat": "52.373083",
-    "long": "4.892648"
+    "long": "4.892648",
+    "audience": "Iedereen"
   },
   {
     "name": "Hermitage",
     "lat": "52.365285",
-    "long": "4.902391"
+    "long": "4.902391",
+    "audience": "Iedereen"
   },
   {
     "name": "Hortus Botanicus",
     "lat": "52.366672",
-    "long": "4.908182"
+    "long": "4.908182",
+    "audience": "Volwassenen"
   },
   {
     "name": "RAI",
     "lat": "52.341307",
-    "long": "4.888276"
+    "long": "4.888276",
+    "audience": "Iedereen"
   },
   {
     "name": "De Wallen",
     "lat": "52.372715",
-    "long": "4.897384"
+    "long": "4.897384",
+    "audience": "Toeristen"
   },
   {
     "name": "VUmc",
     "lat": "52.336160",
-    "long": "4.859080"
+    "long": "4.859080",
+    "audience": "Studenten"
   },
   {
     "name": "Zuidas",
     "lat": "52.338813",
-    "long": "4.873673"
+    "long": "4.873673",
+    "audience": "Volwassenen"
   },
   {
     "name": "A’DAM Lookout",
     "lat": "52.383876",
-    "long": "4.902366"
+    "long": "4.902366",
+    "audience": "Toeristen"
   },
   {
     "name": "Paradiso",
     "lat": "52.362158",
-    "long": "4.883834"
+    "long": "4.883834",
+    "audience": "Concertgangers"
   },
   {
     "name": "Westerpark",
     "lat": "52.386045",
-    "long": "4.877888"
+    "long": "4.877888",
+    "audience": "Iedereen"
   },
   {
     "name": "Oosterpark",
     "lat": "52.358951",
-    "long": "4.920834"
+    "long": "4.920834",
+    "audience": "Iedereen"
   },
   {
     "name": "AFAS Live",
     "lat": "52.312478",
-    "long": "4.944101"
+    "long": "4.944101",
+    "audience": "Concertgangers"
   },
   {
     "name": "Nelson Mandelapark",
     "lat": "52.311218",
-    "long": "4.962199"
+    "long": "4.962199",
+    "audience": "Iedereen"
   },
   {
     "name": "Carré",
     "lat": "52.362388",
-    "long": "4.904266"
+    "long": "4.904266",
+    "audience": "Iedereen"
   },
   {
     "name": "Johan Cruijff Arena",
     "lat": "52.314378",
-    "long": "4.941972"
+    "long": "4.941972",
+    "audience": "Sportliefhebbers"
   },
   {
     "name": "Nieuwmarkt",
     "lat": "52.372116",
-    "long": "4.900780"
+    "long": "4.900780",
+    "audience": "Volwassenen"
   },
   {
     "name": "Rembrandtplein",
     "lat": "52.366198",
-    "long": "4.896926"
+    "long": "4.896926",
+    "audience": "Iedereen"
   },
   {
     "name": "NDSM",
     "lat": "52.400865",
-    "long": "4.893424"
+    "long": "4.893424",
+    "audience": [
+      "Studenten",
+      "Volwassenen"
+    ]
   },
   {
     "name": "Joods Historisch Museum",
     "lat": "52.367089",
-    "long": "4.903784"
+    "long": "4.903784",
+    "audience": "Iedereen"
   },
   {
     "name": "Waterlooplein",
     "lat": "52.368127",
-    "long": "4.904166"
+    "long": "4.904166",
+    "audience": "Iedereen"
   },
   {
     "name": "Tropenmuseum",
     "lat": "52.362674",
-    "long": "4.922381"
+    "long": "4.922381",
+    "audience": "Volwassenen"
   },
   {
     "name": "Olympisch stadion",
     "lat": "52.343413",
-    "long": "4.854119"
+    "long": "4.854119",
+    "audience": "Sportliefhebbers"
   },
   {
     "name": "HvA Amstelcampus",
     "lat": "52.358861",
-    "long": "4.909387"
+    "long": "4.909387",
+    "audience": "Studenten"
+  },
+  {
+    "name": "Vondelpark",
+    "lat": "52.357994",
+    "long": "4.868647",
+    "audience": "Iedereen"
   }
 ]
