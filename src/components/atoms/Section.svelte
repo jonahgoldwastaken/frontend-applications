@@ -19,6 +19,21 @@
     filter(filterOnOpeningHours(times, timeType)),
     unless(always(showInvalidOpeningHours), filter(filterDataWithValidHours))
   )($rdwData)
+  $: capacity = data.reduce((acc, curr) => acc + curr.capacity, 0)
+  $: averageOpeningTime = data.reduce(
+    (acc, curr) =>
+      curr.openingHours[0] != undefined
+        ? acc + curr.openingHours[0] / data.length
+        : acc,
+    0
+  )
+  $: averageClosingTime = data.reduce(
+    (acc, curr) =>
+      curr.openingHours[1] != undefined
+        ? acc + curr.openingHours[1] / data.length
+        : acc,
+    0
+  )
 </script>
 
 <style>
@@ -31,4 +46,11 @@
 <section>
   <slot />
   <DataClock {distances} {times} {timeType} {chosenHotspot} bind:data />
+  <p>
+    Data:
+    {data.length},
+    {capacity},
+    {averageOpeningTime},
+    {averageClosingTime}
+  </p>
 </section>

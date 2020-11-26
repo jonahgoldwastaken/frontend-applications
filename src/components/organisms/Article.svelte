@@ -56,7 +56,7 @@
   <Section>
     <p>
       Laten we beginnen bij De Dam, het hart van Amsterdam. Binnen een straal
-      van 1 kilometer zijn er test parkeergarages, met test parkeerplekken in
+      van 1 kilometer zijn er 5 parkeergarages, met 180 parkeerplekken in
       totaal. Dat zijn er best veel/heel veel/vrij weinig. Het is dus zo dat je
       test. De openings- en sluitingstijden zeggen ook wat over de
       toegankelijkheid van de Dam, namelijk test
