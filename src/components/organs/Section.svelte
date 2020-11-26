@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte'
   import { always, filter, pipe, unless } from 'ramda'
   import { rdwData } from '../../store/data'
   import {
@@ -7,11 +8,12 @@
     filterOnOpeningHours,
   } from '../../utilities/clock'
   import DataClock from '../molecules/DataClock.svelte'
+  import ParagraphContainer from '../molecules/ParagraphContainer.svelte'
 
   export let distances = [0, 1]
   export let times = [0, 12]
   export let timeType = 'opening'
-  export let showInvalidOpeningHours = false
+  export let showInvalidOpeningHours = true
   export let chosenHotspot = 'De Dam'
 
   $: data = pipe(
@@ -34,23 +36,31 @@
         : acc,
     0
   )
+
+  onMount(() => {
+    console.log(data.length, capacity, averageOpeningTime, averageClosingTime)
+  })
 </script>
 
 <style>
   section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 2rem;
+    height: 100vh;
+    align-items: center;
+    margin: 0 auto 2rem;
+  }
+  div {
+    display: block;
   }
 </style>
 
 <section>
-  <slot />
-  <DataClock {distances} {times} {timeType} {chosenHotspot} bind:data />
-  <p>
-    Data:
-    {data.length},
-    {capacity},
-    {averageOpeningTime},
-    {averageClosingTime}
-  </p>
+  <ParagraphContainer>
+    <slot />
+  </ParagraphContainer>
+  <div>
+    <DataClock {distances} {times} {timeType} {chosenHotspot} bind:data />
+  </div>
 </section>

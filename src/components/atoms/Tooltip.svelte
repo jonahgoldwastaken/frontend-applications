@@ -18,16 +18,20 @@
     position: fixed;
     top: var(--y);
     left: var(--x);
-    background: black;
+    background: white;
     pointer-events: none;
-    padding: 2rem;
+    padding: 1em;
+    border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.2);
   }
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
   li {
-    color: white;
+    color: black;
   }
 </style>
 
@@ -42,17 +46,19 @@
         {currentParkingArea.distanceToHotspot[$chosenHotspot]}km
       </li>
       <li>Capaciteit: {currentParkingArea.capacity}</li>
-      <li>
-        Openingstijd:
-        {currentParkingArea.openingHours[0] < 10 ? `0${currentParkingArea.openingHours[0]}` : currentParkingArea.openingHours[0]}:{currentParkingArea.openingHours[0] % 1 ? (currentParkingArea.openingHours[0] % 1) * 60 : '00'}
-        uur
-      </li>
-      <li>
-        Sluitingstijd:
-        {currentParkingArea.openingHours[1] < 10 ? `0${currentParkingArea.openingHours[1]}` : currentParkingArea.openingHours[1]}:{currentParkingArea.openingHours[1] % 1 ? (currentParkingArea.openingHours[1] % 1) * 60 : '00'}
-        uur
-      </li>
-      <li />
+      {#if currentParkingArea.openingHours[0] != undefined}
+        <li>
+          Openingstijd:
+          {currentParkingArea.openingHours[0] < 10 ? `0${currentParkingArea.openingHours[0]}` : currentParkingArea.openingHours[0]}:{currentParkingArea.openingHours[0] % 1 ? (currentParkingArea.openingHours[0] % 1) * 60 : '00'}
+          uur
+        </li>
+        <li>
+          Sluitingstijd:
+          {currentParkingArea.openingHours[1] < 10 ? `0${currentParkingArea.openingHours[1]}` : currentParkingArea.openingHours[1]}:{currentParkingArea.openingHours[1] % 1 ? (currentParkingArea.openingHours[1] % 1) * 60 : '00'}
+          uur
+        </li>
+        <li />
+      {/if}
     </ul>
   </div>
 {/if}

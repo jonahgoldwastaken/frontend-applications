@@ -4,6 +4,7 @@
 
   export let minRadius
   export let maxRadius
+  export let legend = 'Afstand'
 
   $: radiusScale = scaleLinear()
     .domain([minRadius, maxRadius])
@@ -29,7 +30,7 @@
 </style>
 
 <g class="radius-group">
-  {#each radiusData as datum}
+  {#each radiusData as datum, i (datum)}
     <circle class="radius-line" r={radiusScale(datum)} />
     <text
       class="radius-text"
@@ -37,5 +38,13 @@
       transform="rotate(15)">
       {Number.isInteger(datum) ? datum : datum.toFixed(2)}km
     </text>
+    {#if i === 0}
+      <text
+        class="radius-text"
+        y={-radiusScale(datum) - 5}
+        transform="rotate(-15)">
+        {legend}
+      </text>
+    {/if}
   {/each}
 </g>

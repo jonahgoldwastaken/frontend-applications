@@ -1,8 +1,9 @@
 <script>
   import H1 from '../atoms/H1.svelte'
   import Intro from '../atoms/Intro.svelte'
-  import Section from '../atoms/section.svelte'
-  import DataClock from '../molecules/DataClock.svelte'
+  import Section from '../organs/section.svelte'
+  import Paragraph from '../atoms/Paragraph.svelte'
+  import Highlight from '../atoms/Highlight.svelte'
 </script>
 
 <style>
@@ -25,7 +26,7 @@
     </H1>
   </header>
   <Intro intro={true}>
-    <p>
+    <Paragraph>
       De rol van auto's gaat de komende jaren zeer veranderen in onze hoofdstad.
       <a
         href="https://www.parool.nl/nieuws/vanaf-2030-wordt-alle-verkeer-in-de-stad-elektrisch~b536e878/"
@@ -45,21 +46,34 @@
         verdwenen zijn</a>. Veel ambitieuze plannen om de rol van de auto binnen
       Amsterdam radicaal om te gooien, maar hoe zit het dan met de
       bereikbaarheid van hotspots in de stad?
-    </p>
-    <p>
+    </Paragraph>
+    <Paragraph>
       Disclaimer: De data die is niet altijd even compleet. De parkeergarages
       hebben lang niet allemaal een aangegeven aantal parkeerplaatsen, waardoor
       sommige getallen erg krom uit de verf komen. Houdt hier rekening mee
       tijdens het lezen van dit artikel.
-    </p>
+    </Paragraph>
   </Intro>
   <Section>
-    <p>
-      Laten we beginnen bij De Dam, het hart van Amsterdam. Binnen een straal
-      van 1 kilometer zijn er 5 parkeergarages, met 180 parkeerplekken in
-      totaal. Dat zijn er best veel/heel veel/vrij weinig. Het is dus zo dat je
-      test. De openings- en sluitingstijden zeggen ook wat over de
-      toegankelijkheid van de Dam, namelijk test
-    </p>
+    <Paragraph>
+      Deze grafiek laat de openingstijden zien voor
+      <Highlight>alle</Highlight>
+      parkeerplekken rondom een hotspot in de stad.
+    </Paragraph>
+  </Section>
+  <Section>
+    <Paragraph>
+      Laten we beginnen bij De Dam, het kloppende hart van Amsterdam. Binnen een
+      straal van 1 kilometer zijn er 15 parkeergarages, met 1637 vermelde
+      parkeerplekken in totaal. Maar 5 van de 15 parkeergelegenheden hebben hun
+      openings- en sluitingstijden vermeld. Dat is vrij weinig data, maar je kan
+      wel bijna de gehele dag parkeren op deze plekken. Je kan bij de meeste
+      parkeergarages inrijden vanaf 9 uur tot 12 uur 's nachts, waarvan 2 open
+      zijn tot 4 uur 's nachts.
+    </Paragraph>
+    <Paragraph>
+      De Dam is een plek waar veel mensen naartoe komen, dus het is niet zo gek
+      dat er zoveel parkeerplekken beschikbaar zijn in de buurt.
+    </Paragraph>
   </Section>
 </article>

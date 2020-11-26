@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import ClockAngle from '../atoms/ClockAngle.svelte'
   import ClockCenter from '../atoms/ClockCenter.svelte'
   import ClockData from '../atoms/ClockData.svelte'
@@ -13,10 +12,6 @@
   export let timeType
   export let distances
   export let chosenHotspot
-
-  onMount(() => {
-    console.log(data)
-  })
 
   function mouseOverHandler(data) {
     return () => {
@@ -38,11 +33,11 @@
 
 <div>
   <ClockOutline>
+    <ClockRadius minRadius={distances[0]} maxRadius={distances[1]} />
     <ClockAngle
       minAngle={times[0]}
       maxAngle={times[1]}
       textFormatter={d => (d > 12 ? d + 'PM' : d === 0 ? '12AM' : d + 'AM')} />
-    <ClockRadius minRadius={distances[0]} maxRadius={distances[1]} />
     <ClockCenter>{chosenHotspot}</ClockCenter>
     <ClockData
       bind:data

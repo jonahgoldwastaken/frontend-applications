@@ -27,22 +27,22 @@ const pageLoadedAmount = () => {
 }
 
 export const rdwData = readable(new Promise(() => {}), set => {
-  if (pageLoadedAmount() === 0) {
+  // if (pageLoadedAmount() === 0) {
+  //   parseRDWData()
+  //     .then(data => {
+  //       storeData(data)
+  //       set(data)
+  //     })
+  //     .catch(console.trace)
+  // } else {
+  const storedData = retrieveLocalData()
+  if (!storedData)
     parseRDWData()
       .then(data => {
         storeData(data)
         set(data)
       })
       .catch(console.trace)
-  } else {
-    const storedData = retrieveLocalData()
-    if (!storedData)
-      parseRDWData()
-        .then(data => {
-          storeData(data)
-          set(data)
-        })
-        .catch(console.trace)
-    else set(storedData)
-  }
+  else set(storedData)
+  // }
 })
