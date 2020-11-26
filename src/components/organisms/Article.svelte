@@ -1,7 +1,7 @@
 <script>
   import H1 from '../atoms/H1.svelte'
   import Intro from '../atoms/Intro.svelte'
-  import Section from '../organs/section.svelte'
+  import Section from '../organs/Section.svelte'
   import Paragraph from '../atoms/Paragraph.svelte'
   import Highlight from '../atoms/Highlight.svelte'
 </script>
