@@ -5,11 +5,12 @@
 <style>
   svg {
     width: 100%;
-    height: 100%;
+    margin-top: 1rem;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
   }
   .clock {
-    fill: none;
-    stroke: black;
+    fill: white;
+    stroke: #323031;
     stroke-width: 12px;
   }
 </style>

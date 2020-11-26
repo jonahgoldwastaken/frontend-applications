@@ -36,7 +36,7 @@
       class="radius-text"
       y={-radiusScale(datum) - 5}
       transform="rotate(15)">
-      {Number.isInteger(datum) ? datum : datum.toFixed(2)}km
+      {Number.isInteger(datum) ? datum : datum.toFixed(1)}km
     </text>
     {#if i === 0}
       <text

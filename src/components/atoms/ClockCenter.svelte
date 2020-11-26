@@ -13,8 +13,10 @@
     stroke: none;
   }
   .center__text {
+    display: block;
     width: 100%;
     font: 700 24px 'PT Sans';
+    padding: 2em;
     text-anchor: middle;
     dominant-baseline: middle;
     fill: white;

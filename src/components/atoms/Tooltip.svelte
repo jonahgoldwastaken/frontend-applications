@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte'
   import { chosenHotspot } from '../../store/data'
 
   let pageX
@@ -9,6 +10,10 @@
     pageX = e.pageX - window.scrollX
     pageY = e.pageY - window.scrollY
   }
+
+  onMount(() => {
+    console.log(currentParkingArea)
+  })
 </script>
 
 <style>
@@ -49,12 +54,12 @@
       {#if currentParkingArea.openingHours[0] != undefined}
         <li>
           Openingstijd:
-          {currentParkingArea.openingHours[0] < 10 ? `0${currentParkingArea.openingHours[0]}` : currentParkingArea.openingHours[0]}:{currentParkingArea.openingHours[0] % 1 ? (currentParkingArea.openingHours[0] % 1) * 60 : '00'}
+          {currentParkingArea.openingHours[0] < 10 ? `0${currentParkingArea.openingHours[0]}` : currentParkingArea.openingHours[0] === 24 ? '00' : currentParkingArea.openingHours[0]}:{currentParkingArea.openingHours[0] % 1 ? (currentParkingArea.openingHours[0] % 1) * 60 : '00'}
           uur
         </li>
         <li>
           Sluitingstijd:
-          {currentParkingArea.openingHours[1] < 10 ? `0${currentParkingArea.openingHours[1]}` : currentParkingArea.openingHours[1]}:{currentParkingArea.openingHours[1] % 1 ? (currentParkingArea.openingHours[1] % 1) * 60 : '00'}
+          {currentParkingArea.openingHours[1] < 10 ? `0${currentParkingArea.openingHours[1]}` : currentParkingArea.openingHours[1] === 24 ? '00' : currentParkingArea.openingHours[1]}:{currentParkingArea.openingHours[1] % 1 ? (currentParkingArea.openingHours[1] % 1) * 60 : '00'}
           uur
         </li>
         <li />

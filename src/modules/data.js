@@ -64,7 +64,8 @@ function parkingAreaMapper(data) {
     map(val =>
       pipe(
         assoc('distanceToHotspot', associateDistancesToHotspots(hotspots, val)),
-        mapAddOpeningHoursAsKeyToArea
+        mapAddOpeningHoursAsKeyToArea,
+        addUUID
       )(val)
     ),
     project([
@@ -117,18 +118,22 @@ function associateDistancesToHotspots(hotspots, area) {
 
 function parseOpeningHourStrings(time) {
   const numbers = time.split('')
-  return numbers.length > 3
-    ? Number(numbers[0] + numbers[1]) + Number(numbers[2] + numbers[3]) / 60
-    : numbers.length === 1
-    ? +numbers[0]
-    : +numbers[0] + Number(numbers[1] + numbers[2]) / 60
+  const result =
+    numbers.length > 3
+      ? Number(numbers[0] + numbers[1]) + Number(numbers[2] + numbers[3]) / 60
+      : numbers.length === 1
+      ? +numbers[0]
+      : +numbers[0] + Number(numbers[1] + numbers[2]) / 60
+  return result
 }
 
 function mapAddOpeningHoursAsKeyToArea(area) {
   return area.openingHours[0]
     ? area
     : 'description' in area
-    ? area.description.match(/\d{2}-\d{2}/)
+    ? area.description.match(/\d{2}-\d{2}/) &&
+      area.description.match(/\d{2}-\d{2}/)[0].split('-')[0] < 25 &&
+      area.description.match(/\d{2}-\d{2}/)[0].split('-')[1] < 25
       ? {
           ...area,
           openingHours: [
@@ -141,6 +146,10 @@ function mapAddOpeningHoursAsKeyToArea(area) {
           openingHours: [null, null],
         }
     : area
+}
+
+function addUUID(item) {
+  return set(lensProp('id'), Math.random() * 1000000)(item)
 }
 
 function parseInvalidValues(area) {

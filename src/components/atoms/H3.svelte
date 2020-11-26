@@ -1,8 +1,9 @@
 <style>
   h3 {
-    font-weight: 700;
-    font-size: 1.5rem;
+    font-weight: 500;
+    font-size: 2rem;
     margin: 0 0 1em;
+    color: black;
   }
 </style>
 

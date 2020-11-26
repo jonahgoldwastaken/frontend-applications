@@ -1,4 +1,4 @@
-export { removeFromString, splitStringOn }
+export { removeFromString, splitStringOn, timeFormatter }
 
 /**
  * Removes everything from string that matches regular expression
@@ -18,4 +18,19 @@ function removeFromString(remover) {
  */
 function splitStringOn(splitter) {
   return str => str.slice().split(splitter)
+}
+
+/**
+ * Formats a string to a nice Time format
+ * @param {string} str String to format
+ * @returns {string} Formatted string
+ */
+function timeFormatter(str) {
+  return str > 12
+    ? `${str - 12}PM`
+    : str === 12
+    ? '12PM'
+    : str === 0
+    ? '12AM'
+    : `${str}AM`
 }

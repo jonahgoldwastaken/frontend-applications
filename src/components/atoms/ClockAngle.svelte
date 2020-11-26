@@ -34,7 +34,7 @@
 
   .angle-legend {
     font: 500 12px 'PT Sans';
-    text-anchor: middle;
+    text-anchor: end;
     alignment-baseline: end;
     fill: black;
   }
@@ -55,7 +55,7 @@
       {#if i === 3}
         <text
           class="angle-legend"
-          x={($distanceRadius + $dimension / 10) / 2}
+          x={(($distanceRadius + $dimension / 10) / 4) * 3}
           y="-8">
           {legend}
         </text>

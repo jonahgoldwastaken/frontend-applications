@@ -11,6 +11,8 @@
 
   :global(body) {
     margin: 0;
+    padding: 0 2rem;
+    background: #ffc857;
   }
 
   :global(:root) {
