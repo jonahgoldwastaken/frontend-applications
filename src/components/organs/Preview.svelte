@@ -7,31 +7,24 @@
     filterOnDistanceToHotspot,
     filterOnOpeningHours,
   } from '../../utilities/clock'
-  import Highlight from '../atoms/Highlight.svelte'
   import DataClock from '../molecules/DataClock.svelte'
+  import Highlight from '../atoms/Highlight.svelte'
   import ParagraphContainer from '../atoms/ParagraphContainer.svelte'
   import { timeFormatter } from '../../utilities/string.js'
 
-  export let distances = [0, 1]
-  export let times = [0, 12]
-  export let timeType = 'opening'
-  export let showInvalidOpeningHours = false
-  export let chosenHotspot
+  let distances = [0, 1]
+  let times = [0, 12]
+  let timeType = 'opening'
+  let showInvalidOpeningHours = false
+  let chosenHotspot
+  let preview = true
 
   $: data = pipe(
     filter(filterOnDistanceToHotspot(distances, chosenHotspot)),
     filter(filterOnOpeningHours(times, timeType)),
     unless(always(showInvalidOpeningHours), filter(filterDataWithValidHours))
   )($rdwData)
-  $: amountWithOpeningHours = data.reduce(
-    (acc, curr) => (curr.openingHours[0] != undefined ? acc + 1 : acc),
-    0
-  )
   $: capacity = data.reduce((acc, curr) => acc + curr.capacity, 0)
-  $: amountCapacitySources = data.reduce(
-    (acc, curr) => (curr.capacity > 0 ? acc + 1 : acc),
-    0
-  )
   $: averageOpeningTime = data.reduce(
     (acc, curr) =>
       curr.openingHours[0] != undefined
@@ -46,6 +39,60 @@
         : acc,
     0
   )
+
+  onMount(() => {
+    preview = true
+    chosenHotspot = 'Olympisch Stadion'
+    setInterval(() => {
+      switch (chosenHotspot) {
+        case 'Concertgebouw':
+          chosenHotspot = 'Olympisch stadion'
+          times = [9, 21]
+          distances = [0, 5]
+          timeType = 'closing'
+          showInvalidOpeningHours = !showInvalidOpeningHours
+          break
+        case 'Melkweg':
+          chosenHotspot = 'Concertgebouw'
+          times = [3, 15]
+          distances = [2, 4]
+          timeType = 'opening'
+          break
+        case 'RAI':
+          chosenHotspot = 'Melkweg'
+          times = [7, 19]
+          distances = [30, 35]
+          timeType = 'opening'
+          break
+        case 'NEMO':
+          chosenHotspot = 'RAI'
+          times = [2, 14]
+          distances = [0, 2]
+          timeType = 'closing'
+          showInvalidOpeningHours = !showInvalidOpeningHours
+          break
+        case 'Rijksmuseum':
+          chosenHotspot = 'NEMO'
+          times = [7, 19]
+          distances = [5, 7]
+          timeType = 'opening'
+          break
+        case 'Dam':
+          chosenHotspot = 'Rijksmuseum'
+          times = [0, 12]
+          distances = [0, 3]
+          timeType = 'closing'
+          showInvalidOpeningHours = !showInvalidOpeningHours
+          break
+        default:
+          chosenHotspot = 'Dam'
+          times = [11, 23]
+          distances = [0, 1]
+          timeType = 'closing'
+          break
+      }
+    }, 2000)
+  })
 </script>
 
 <style>
@@ -99,65 +146,45 @@
 
 <section>
   <ParagraphContainer>
-    <slot name="heading" />
-    <slot name="image" />
-    <slot />
+    <h2>Een korte uitleg</h2>
     <p>
-      Binnen een straal van
-      <Highlight>{distances[0]}km tot {distances[1]}km</Highlight>
-      van de hotspot
-      <Highlight>
-        {data.length === 1 ? 'ligt 1 parkeergelegenheid' : `liggen ${data.length} parkeergelegenheden`}
-      </Highlight>
-      {#if showInvalidOpeningHours}
-        waarvan
-        <Highlight>
-          {amountWithOpeningHours === 1 ? '1 locatie' : `${amountWithOpeningHours} locaties`}
-          met
-        </Highlight>
-        {timeType === 'opening' ? (amountWithOpeningHours === 1 ? 'een openingstijd' : 'openingstijden') : amountWithOpeningHours === 1 ? 'een sluitingstijd' : 'sluitingstijden'}
-        van
-        {timeFormatter(times[0], true)}
-        tot
-        {timeFormatter(times[1], true)}
-        uur en
-        <Highlight>
-          {data.length - amountWithOpeningHours}
-          parkeergelegenheden zonder
-        </Highlight>
-        {timeType === 'opening' ? (data.length - amountWithOpeningHours === 1 ? 'openingstijd' : 'openingstijden') : data.length - amountWithOpeningHours === 1 ? 'sluitingstijd' : 'sluitingstijden'}.
-      {:else}
-        met een
-        {timeType === 'opening' ? 'openingstijd' : 'sluitingstijd'}
-        van
-        {timeFormatter(times[0], true)}
-        tot
-        {timeFormatter(times[1], true)}.
-      {/if}
+      Deze grafiek laat de openings- en sluitingstijden zien voor
+      <Highlight>alle</Highlight>
+      parkeerplekken rondom een hotspot in de stad. Elke
+      parkeergarage/gelegenheid is een
+      <Highlight background="black">zwart</Highlight>
+      bolletje als de openingstijden bekend zijn of een
+      <Highlight background="darkgrey">donkergrijs</Highlight>
+      bolletje als dat niet zo is. De tijden die worden getoond kan je zien aan
+      de buitenrand van de grafiek. En aan de label rechts van de grafiek is te
+      zien of het gaat om de tijd wanneer een parkeergarage opent of sluit.
     </p>
-    {#if amountCapacitySources > 0}
-      <p>
-        Er kunnen, als we kijken naar de
-        <Highlight>
-          {amountCapacitySources === 1 ? 'enige locatie' : `${amountCapacitySources} locaties`}
-        </Highlight>
-        waarvan de totale capaciteit bekend is, in totaal
-        <Highlight>{capacity} auto's</Highlight>
-        terecht bij de
-        {data.length === 1 ? 'gelegenheid' : 'gelegenheden'}.
-
-        <Highlight>
-          {capacity > 750 ? "Dat zijn veel auto's" : capacity > 500 ? "Dat zijn best wat auto's" : capacity > 250 ? 'Dat komt al best ver' : 'Dat zijn best wel weinig parkeerplaatsen'}.
-        </Highlight>
-      </p>
-    {/if}
+    <p>
+      Je kan met de filters de diagram aanpassen naar eigen smaak. Je kan voor
+      openings- of sluitingstijd kiezen, de tijden verplaatsen, de minimum- en
+      maximumafstand bepalen en ervoor kiezen om parkeergelegenheden zonder
+      openingstijden te laten zien of niet.
+    </p>
+    <p>
+      Wanneer je een filter aanpast, verandert de tekst in het zijbalkje mee,
+      zoals
+      <Highlight>De totale hoeveelheid parkeerplaatsen: {capacity}</Highlight>
+      of
+      <Highlight>De minimum afstand: {distances[0]}km</Highlight>
+    </p>
   </ParagraphContainer>
   <div class="sub-grid">
-    <DataClock {distances} {times} {timeType} {chosenHotspot} bind:data />
+    <DataClock
+      bind:preview
+      {distances}
+      {times}
+      {timeType}
+      {chosenHotspot}
+      bind:data />
     <form on:submit|preventDefault>
       <h3>Filters</h3>
       <label>Openings- of sluitingstijd?
-        <select bind:value={timeType}>
+        <select disabled={preview} bind:value={timeType}>
           <option value="opening">Openingstijd</option>
           <option value="closing">Sluitingstijd</option>
         </select>
@@ -166,13 +193,14 @@
         <p id="time-label">
           {timeType === 'opening' ? 'Openingstijden' : 'Sluitingstijden'}
           van
-          {timeFormatter(times[0], true)}
+          {timeFormatter(times[0])}
           tot
-          {timeFormatter(times[1], true)}
+          {timeFormatter(times[1])}
         </p>
         <button
           aria-labelledby="time-label"
           type="button"
+          disabled={preview}
           on:click={() => {
             times = times[0] === 0 ? times : [times[0] - 1, times[1] - 1]
           }}>
@@ -181,6 +209,7 @@
         <button
           aria-labelledby="time-label"
           type="button"
+          disabled={preview}
           on:click={() => {
             times = times[1] === 24 ? times : [times[0] + 1, times[1] + 1]
           }}>
@@ -192,6 +221,7 @@
           min="0"
           max="9"
           step="1"
+          disabled={preview}
           bind:value={distances[0]}
           on:input={e => {
             if (e.currentTarget.value == 10) {
@@ -205,6 +235,7 @@
           min="1"
           max="10"
           step="1"
+          disabled={preview}
           bind:value={distances[1]}
           on:input={e => {
             if (e.currentTarget.value == 0) {
@@ -214,7 +245,10 @@
             }
           }} /></label>
       <label>Laat parkeergelegenheden zien zonder openingstijden
-        <input type="checkbox" bind:checked={showInvalidOpeningHours} />
+        <input
+          disabled={preview}
+          type="checkbox"
+          bind:checked={showInvalidOpeningHours} />
       </label>
     </form>
   </div>

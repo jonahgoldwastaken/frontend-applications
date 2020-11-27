@@ -30,7 +30,7 @@
     "audience": "Iedereen"
   },
   {
-    "name": "De Dam",
+    "name": "Dam",
     "lat": "52.373083",
     "long": "4.892648",
     "audience": "Iedereen"
@@ -135,10 +135,7 @@
     "name": "NDSM",
     "lat": "52.400865",
     "long": "4.893424",
-    "audience": [
-      "Studenten",
-      "Volwassenen"
-    ]
+    "audience": ["Studenten", "Volwassenen"]
   },
   {
     "name": "Joods Historisch Museum",

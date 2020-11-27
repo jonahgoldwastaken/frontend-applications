@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte'
-  import { chosenHotspot } from '../../store/data'
+  import { timeFormatter } from '../../utilities/string'
 
   let pageX
   let pageY
   export let currentParkingArea = null
+  export let chosenHotspot = ''
 
   function handleMouseMove(e) {
     pageX = e.pageX - window.scrollX
@@ -47,19 +48,19 @@
     <ul>
       <li>
         Afstand tot
-        {$chosenHotspot}:
-        {currentParkingArea.distanceToHotspot[$chosenHotspot]}km
+        {chosenHotspot}:
+        {currentParkingArea.distanceToHotspot[chosenHotspot]}km
       </li>
       <li>Capaciteit: {currentParkingArea.capacity}</li>
       {#if currentParkingArea.openingHours[0] != undefined}
         <li>
           Openingstijd:
-          {currentParkingArea.openingHours[0] < 10 ? `0${currentParkingArea.openingHours[0]}` : currentParkingArea.openingHours[0] === 24 ? '00' : currentParkingArea.openingHours[0]}:{currentParkingArea.openingHours[0] % 1 ? (currentParkingArea.openingHours[0] % 1) * 60 : '00'}
+          {timeFormatter(currentParkingArea.openingHours[0], true)}
           uur
         </li>
         <li>
           Sluitingstijd:
-          {currentParkingArea.openingHours[1] < 10 ? `0${currentParkingArea.openingHours[1]}` : currentParkingArea.openingHours[1] === 24 ? '00' : currentParkingArea.openingHours[1]}:{currentParkingArea.openingHours[1] % 1 ? (currentParkingArea.openingHours[1] % 1) * 60 : '00'}
+          {timeFormatter(currentParkingArea.openingHours[1], true)}
           uur
         </li>
         <li />

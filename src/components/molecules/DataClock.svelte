@@ -50,5 +50,5 @@
   <ClockCenter>{chosenHotspot}</ClockCenter>
 </ClockOutline>
 {#if !preview}
-  <Tooltip bind:currentParkingArea />
+  <Tooltip bind:currentParkingArea bind:chosenHotspot />
 {/if}

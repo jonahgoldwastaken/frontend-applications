@@ -1,5 +1,5 @@
 <script>
-  import ParagraphContainer from '../molecules/ParagraphContainer.svelte'
+  import ParagraphContainer from '../atoms/ParagraphContainer.svelte'
 </script>
 
 <style>
@@ -7,11 +7,14 @@
     min-height: 30rem;
     height: 100vh;
     margin: 0 auto 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
 
 <section>
-  <ParagraphContainer top="25vh">
+  <ParagraphContainer>
     <slot />
   </ParagraphContainer>
 </section>

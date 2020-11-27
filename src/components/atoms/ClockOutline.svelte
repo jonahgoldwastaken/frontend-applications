@@ -3,9 +3,13 @@
 </script>
 
 <style>
-  svg {
+  .svg-container {
+    align-self: start;
+    grid-row: span 1;
+  }
+
+  .svg {
     width: 100%;
-    margin-top: 1rem;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
   }
   .clock {
@@ -15,9 +19,11 @@
   }
 </style>
 
-<svg viewBox="0 0 {$dimension} {$dimension}">
-  <g transform="translate({$dimension / 2}, {$dimension / 2})">
-    <circle r={$radius} class="clock" />
-    <slot />
-  </g>
-</svg>
+<div class="svg-container">
+  <svg class="svg" viewBox="0 0 {$dimension} {$dimension}">
+    <g transform="translate({$dimension / 2}, {$dimension / 2})">
+      <circle r={$radius} class="clock" />
+      <slot />
+    </g>
+  </svg>
+</div>

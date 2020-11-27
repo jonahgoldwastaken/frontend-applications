@@ -25,8 +25,14 @@ function splitStringOn(splitter) {
  * @param {string} str String to format
  * @returns {string} Formatted string
  */
-function timeFormatter(str) {
-  return str > 12
+function timeFormatter(str, long) {
+  return long
+    ? `${str < 10 ? `0${str}` : str === 24 ? '00' : str}:${
+        str % 1 ? (str % 1) * 60 : '00'
+      }`
+    : str === 24
+    ? '12AM'
+    : str > 12
     ? `${str - 12}PM`
     : str === 12
     ? '12PM'

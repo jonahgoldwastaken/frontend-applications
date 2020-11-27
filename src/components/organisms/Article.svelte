@@ -1,18 +1,18 @@
 <script>
-  import H2 from '../atoms/H2.svelte'
-  import H1 from '../atoms/H1.svelte'
   import Header from '../atoms/Header.svelte'
   import Intro from '../molecules/Intro.svelte'
+  import Preview from '../organs/Preview.svelte'
   import Section from '../organs/Section.svelte'
-  import Paragraph from '../atoms/Paragraph.svelte'
+  import Playground from '../organs/Playground.svelte'
   import Highlight from '../atoms/Highlight.svelte'
   import Anchor from '../atoms/Anchor.svelte'
 </script>
 
 <style>
   article {
-    max-width: 80rem;
+    max-width: 84rem;
     margin: 0 auto;
+    padding: 0 2rem;
   }
 </style>
 
@@ -23,34 +23,14 @@
     content="Hoe goed worden verschillende bevolkingsgroepen gerepresenteerd als het
       gaat om parkeermogelijkheden voor aantrekkelijke locaties (hot-spots)?" />
   <Header>
-    <H1>
+    <h1>
       Hoe goed worden verschillende bevolkingsgroepen gerepresenteerd als het
       gaat om parkeermogelijkheden voor aantrekkelijke locaties (hot-spots)?
-    </H1>
+    </h1>
   </Header>
-  <Section>
-    <H2>Een korte uitleg</H2>
-    <Paragraph>
-      Deze grafiek laat de openings- en sluitingstijden zien voor
-      <Highlight>alle</Highlight>
-      parkeerplekken rondom een hotspot in de stad. Elke
-      parkeergarage/gelegenheid is een
-      <Highlight background="black">zwart</Highlight>
-      bolletje als de openingstijden bekend zijn of een
-      <Highlight background="darkgrey">donkergrijs</Highlight>
-      bolletje als dat niet zo is. De tijden die worden getoond kan je zien aan
-      de buitenrand van de grafiek. En aan de label rechts van de grafiek is te
-      zien of het gaat om de tijd wanneer een parkeergarage opent of sluit.
-    </Paragraph>
-    <Paragraph>
-      Je kan met de filters de diagram aanpassen naar eigen smaak. Je kan voor
-      openings- of sluitingstijd kiezen, de tijden verplaatsen, de minimum- en
-      maximumafstand bepalen en ervoor kiezen om parkeergelegenheden zonder
-      openingstijden te laten zien of niet.
-    </Paragraph>
-  </Section>
+  <Preview />
   <Intro>
-    <Paragraph>
+    <p>
       De rol van auto's gaat de komende jaren zeer veranderen in onze hoofdstad.
       <Anchor
         href="https://www.parool.nl/nieuws/vanaf-2030-wordt-alle-verkeer-in-de-stad-elektrisch~b536e878/"
@@ -74,31 +54,101 @@
       </Anchor>. Veel ambitieuze plannen om de rol van de auto binnen Amsterdam
       radicaal om te gooien, maar hoe zit het dan met de bereikbaarheid van
       hotspots in de stad?
-    </Paragraph>
-    <Paragraph>
+    </p>
+    <p>
+      Er zijn veel bekende en drukke locaties met elk hun eigen doelgroep, hoe
+      worden die nu gerepresenteerd in het verkeer, en gaat dat veranderen in de
+      toekomst?
+    </p>
+    <p>
       <small>
         Disclaimer: De data die is niet altijd even compleet. De parkeergarages
         hebben lang niet allemaal een aangegeven aantal parkeerplaatsen,
         waardoor sommige getallen erg krom uit de verf komen. Houdt hier
         rekening mee tijdens het lezen van dit artikel.
       </small>
-    </Paragraph>
+    </p>
   </Intro>
-  <Section chosenHotspot="De Dam">
-    <H2>Het hart van Amsterdam</H2>
-    <Paragraph>
-      Laten we beginnen bij De Dam, het kloppende hart van Amsterdam. Binnen een
-      straal van 1 kilometer zijn er 15 parkeergarages, met
-      <Highlight>1637 vermelde parkeerplekken</Highlight>
-      in totaal. Maar 5 van de 15 parkeergelegenheden hebben hun openings- en
-      sluitingstijden vermeld. Dat is vrij weinig data, maar je kan wel bijna de
-      gehele dag parkeren op deze plekken. Je kan bij de meeste parkeergarages
-      inrijden vanaf 9 uur tot 12 uur 's nachts, waarvan 2 open zijn tot 4 uur
-      's nachts.
-    </Paragraph>
-    <Paragraph>
-      De Dam is een plek waar veel mensen naartoe komen, dus het is niet zo gek
-      dat er zoveel parkeerplekken beschikbaar zijn in de buurt.
-    </Paragraph>
+  <Section showInvalidOpeningHours chosenHotspot="Dam">
+    <h2 slot="heading">Het hart van Amsterdam</h2>
+    <img
+      slot="image"
+      src="https://images0.persgroep.net/rcs/Cot8L8HoH9oD0vP5J__edGZ2LpU/diocontent/170590323/_fill/1409/900/?appId=21791a8992982cd8da851550a453bd7f&quality=0.9"
+      alt="Foto van het paleis op de Dam" />
+    <p>
+      Foto
+      <Anchor
+        href="https://persgroep.net"
+        target="_blank"
+        rel="noopener noreferrer">
+        ANP
+      </Anchor>
+    </p>
+    <p>
+      Laten we beginnen bij de Dam, het kloppende hart van Amsterdam. De Dam is
+      een van de meest bezochte plekken in de stad, waardoor je zou denken dat
+      bereikbaarheid van groot belang is. Als iedereen er moet kunnen komen,
+      kunnen mensen die dat het liefst met de auto doen ook?
+    </p>
   </Section>
+  <Section chosenHotspot="Melkweg" showInvalidOpeningHours times={[12, 24]}>
+    <h2 slot="heading">Centrum voor de moderne muziek</h2>
+    <img
+      slot="image"
+      src="https://s3-eu-west-1.amazonaws.com/static.melkweg.nl/media/images/event_default.jpg"
+      alt="Foto van de Melkweg in Amsterdam bij nacht" />
+    <p>
+      Foto
+      <Anchor
+        href="https://melkweg.nl"
+        target="_blank"
+        rel="noopener noreferrer">
+        Melkweg
+      </Anchor>
+    </p>
+    <p>
+      De Melkweg stelt zichzelf graag tentoon als
+      <Anchor
+        href="https://s3-eu-west-1.amazonaws.com/static.melkweg.nl/uploads/documents/melkweg-ondernemingsplan-2017-2020-2.pdf">
+        "de geschikte plek voor een groot aantal specifieke doelgroepen, die
+        vaak nog geen plek hebben in het hoofdstedelijke nachtleven" (Pagina 7
+        uit het ondernemingsplan 2017-2020)
+      </Anchor>.
+      <Highlight background="#323031" text="white">Iedereen</Highlight>
+      die naar moderne muziek luistert komt in aanmerking voor een bezoekje aan
+      de Melkweg om een favoriete artiest live te zien. Kom je daar ook goed
+      terecht
+      <Highlight>met de auto?</Highlight>
+    </p>
+  </Section>
+  <Section showInvalidOpeningHours chosenHotspot="Rijksmuseum">
+    <h2 slot="heading">Het centrum voor de klassieke kunst</h2>
+    <img
+      slot="image"
+      src="https://images.arcadis.com/media/6/6/8/%7B66844D25-A8FF-46FB-BBF6-E5855A6087E3%7DRijksmuseumAmsterdam-main.jpg"
+      alt="Foto van het Rijksmuseum" />
+    <p>
+      Foto
+      <Anchor
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.arcadis.com/nl/nederland/wat-we-doen/projecten/europa/nederland/renovatie-rijksmuseum/">
+        Arcadis
+      </Anchor>
+    </p>
+    <p>
+      Het Rijksmuseum kennen we allemaal wel, en willen we misschien ook wel
+      allemaal graag heen. Wellicht met de auto, maar kan dat ook?
+    </p>
+  </Section>
+  <Intro>
+    <p>
+      Het ziet er naar uit dat de grote spelers goed worden gerepresenteerd, en
+      dat het toch wel lijkt dat er voor iedereen wel plek is om met de auto te
+      komen, in ieder geval voor nu. Ben je nog niet overtuigd? Scroll dan
+      vooral verder, en ga aan de slag met alle andere locaties die beschikbaar
+      zijn in de dataset.
+    </p>
+  </Intro>
+  <Playground />
 </article>

@@ -22,7 +22,13 @@
   $: radialLine = lineRadial()
     .radius(d => radiusScale(d.distanceToHotspot[chosenHotspot]))
     .angle(d =>
-      angleScale(timeType === 'opening' ? d.openingHours[0] : d.openingHours[1])
+      angleScale(
+        d.openingHours[0]
+          ? timeType === 'opening'
+            ? d.openingHours[0]
+            : d.openingHours[1]
+          : times[0]
+      )
     )
 </script>
 
