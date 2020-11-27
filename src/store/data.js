@@ -16,14 +16,14 @@ const pageLoadedAmount = () => {
 }
 
 export const rdwData = readable(new Promise(() => {}), set => {
-  // if (pageLoadedAmount() === 0) {
-  //   parseRDWData()
-  //     .then(data => {
-  //       storeData(data)
-  //       set(data)
-  //     })
-  //     .catch(console.trace)
-  // } else {
+  if (pageLoadedAmount() === 0) {
+    parseRDWData()
+      .then(data => {
+        storeData(data)
+        set(data)
+      })
+      .catch(console.trace)
+  } else {
   const storedData = retrieveLocalData()
   if (!storedData)
     parseRDWData()
