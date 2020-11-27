@@ -24,14 +24,14 @@ export const rdwData = readable(new Promise(() => {}), set => {
       })
       .catch(console.trace)
   } else {
-  const storedData = retrieveLocalData()
-  if (!storedData)
-    parseRDWData()
-      .then(data => {
-        storeData(data)
-        set(data)
-      })
-      .catch(console.trace)
-  else set(storedData)
-  // }
+    const storedData = retrieveLocalData()
+    if (!storedData)
+      parseRDWData()
+        .then(data => {
+          storeData(data)
+          set(data)
+        })
+        .catch(console.trace)
+    else set(storedData)
+  }
 })
