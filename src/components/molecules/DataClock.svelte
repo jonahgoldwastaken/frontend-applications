@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import ClockAngle from '../atoms/ClockAngle.svelte'
   import ClockCenter from '../atoms/ClockCenter.svelte'
   import ClockData from '../atoms/ClockData.svelte'
@@ -15,10 +14,6 @@
   export let distances
   export let chosenHotspot
   export let preview = false
-
-  onMount(() => {
-    console.log(preview)
-  })
 
   function mouseOverHandler(data) {
     return () => {

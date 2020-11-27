@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import { timeFormatter } from '../../utilities/string'
 
   let pageX
@@ -11,10 +10,6 @@
     pageX = e.pageX - window.scrollX
     pageY = e.pageY - window.scrollY
   }
-
-  onMount(() => {
-    console.log(currentParkingArea)
-  })
 </script>
 
 <style>
