@@ -91,7 +91,11 @@
       kunnen mensen die dat het liefst met de auto doen ook?
     </p>
   </Section>
-  <Section chosenHotspot="Melkweg" showInvalidOpeningHours times={[12, 24]}>
+  <Section
+    chosenHotspot="Melkweg"
+    showInvalidOpeningHours
+    timeType="closing"
+    times={[12, 24]}>
     <h2 slot="heading">Centrum voor de moderne muziek</h2>
     <img
       slot="image"

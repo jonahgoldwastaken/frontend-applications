@@ -60,8 +60,8 @@
         waarvan
         <Highlight>
           {amountWithOpeningHours === 1 ? '1 locatie' : `${amountWithOpeningHours} locaties`}
-          met
         </Highlight>
+        met
         {timeType === 'opening' ? (amountWithOpeningHours === 1 ? 'een openingstijd' : 'openingstijden') : amountWithOpeningHours === 1 ? 'een sluitingstijd' : 'sluitingstijden'}
         van
         {timeFormatter(times[0], true)}
