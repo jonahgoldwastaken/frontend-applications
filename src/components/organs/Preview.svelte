@@ -90,7 +90,7 @@
 </style>
 
 <ArticleSection>
-  <ParagraphContainer>
+  <ParagraphContainer sticky>
     <h2>Een korte uitleg</h2>
     <p>
       Deze grafiek laat de openings- en sluitingstijden zien voor
