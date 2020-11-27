@@ -12,6 +12,12 @@ function isGeoDataPoint(data) {
   return data[0] === 'POINT'
 }
 
+/**
+ * Calculates haversine from area to hotspot
+ *
+ * @param {object} area Area specified
+ * @returns {(*) => *} Functiona that takes a hotspot and returns provided area with distances to hotspots
+ */
 function calculateHaversine(area) {
   return hotspot =>
     haversine(

@@ -22,6 +22,7 @@ function splitStringOn(splitter) {
 
 /**
  * Formats a string to a nice Time format
+ *
  * @param {string} str String to format
  * @returns {string} Formatted string
  */

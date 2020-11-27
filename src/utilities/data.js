@@ -18,6 +18,7 @@ function parseResToJSON(res) {
 
 /**
  * Takes a data array, and saves it to localStorage or cookie
+ *
  * @param {object[]} data Data array
  * @returns {boolean}
  */
@@ -38,6 +39,7 @@ function storeData(data) {
 
 /**
  * Retrieves the data from localStorage
+ *
  * @returns {object[]|null} The data from localStorage or cookies or nothing if there is none
  */
 function retrieveLocalData() {

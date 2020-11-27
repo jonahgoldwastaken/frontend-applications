@@ -3,8 +3,6 @@ import { parseRDWData } from '../modules/data'
 import hotspots from '../modules/hotspots.json'
 import { retrieveLocalData, storeData } from '../utilities/data'
 
-export const hotspotData = readable(hotspots)
-
 const pageLoadedAmount = () => {
   const storedAmount = localStorage.getItem('loadAmt')
   if (+storedAmount > 9) {
@@ -14,7 +12,7 @@ const pageLoadedAmount = () => {
   localStorage.setItem('loadAmt', +storedAmount + 1)
   return +storedAmount + 1
 }
-
+export const hotspotData = readable(hotspots)
 export const rdwData = readable(new Promise(() => {}), set => {
   if (pageLoadedAmount() === 0) {
     parseRDWData()

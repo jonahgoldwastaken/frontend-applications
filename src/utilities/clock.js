@@ -1,30 +1,7 @@
-import { reduce } from 'ramda'
-
 export {
-  expandArrayOfNumbers,
-  filterOnDistanceToHotspot,
-  filterOnOpeningHours,
-  filterDataWithValidHours,
-}
-
-/**
- * Maps out all whole numbers between two numbers over array
- *
- * @param {[number, number]} numbersArray Array with two numbers
- * @returns {number[]} Mapped array
- */
-function expandArrayOfNumbers(numbersArray) {
-  return reduce(
-    (acc, curr) =>
-      acc.length === 1
-        ? acc.concat(
-            [...new Array(numbersArray[1] - numbersArray[0])].map(
-              (_, i) => i + 1 + acc[0]
-            )
-          )
-        : [curr],
-    []
-  )(numbersArray)
+    filterOnDistanceToHotspot,
+    filterOnOpeningHours,
+    filterDataWithValidHours,
 }
 
 /**
