@@ -56,6 +56,12 @@ Are primary demographics for hotspots in Amsterdam supported in car parking oppo
 
 The used variables are available through [this link](https://github.com/theonejonahgold/frontend-applications/wiki/Concept#gebruikte-variabelen).
 
+## Svelte functionalities used
+
+- [Templating](https://github.com/theonejonahgold/frontend-applications/wiki/Svelte-basics)
+- [Reactivity](https://github.com/theonejonahgold/frontend-applications/wiki/Svelte-reactivity)
+- [Stores](https://github.com/theonejonahgold/frontend-applications/wiki/Svelte-store)
+
 ## D3 functionalities used
 
 - [lineRadial](https://github.com/d3/d3-shape/blob/master/README.md#_lineradial)
