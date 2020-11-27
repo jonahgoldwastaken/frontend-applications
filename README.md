@@ -2,6 +2,8 @@
 
 [Wiki](https://github.com/theonejonahgold/frontend-applications/wiki) • [Concept](#concept) • [Data story](https://frontend-applications.jonahmeijers.nl)
 
+![Screenshot of end product](docs/screenshot.png)
+
 This repo is created to use the data processed in the [functional-programming repo](https://github.com/theonejonahgold/functional-programming), to create a data visualisation using D3. The data consists of parking data gathered by the RDW (Dutch Vehicle Authority), which can bring many great insights when put into a data visualisation. Read more about the assingment in my [Debriefing](https://github.com/theonejonahgold/functional-programming/wiki/Debriefing-🐒), and read about the concept [further below](#concept)
 
 ## Learning goals
