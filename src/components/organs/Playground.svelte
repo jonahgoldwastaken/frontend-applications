@@ -33,9 +33,9 @@
     (acc, curr) => (curr.capacity > 0 ? acc + 1 : acc),
     0
   )
-  $: hotspotAudience = $hotspotData
-    .find(hotspot => hotspot.name === chosenHotspot)
-    .audience.toLowerCase()
+  $: hotspotAudience = $hotspotData.find(
+    hotspot => hotspot.name === chosenHotspot
+  ).audience
 </script>
 
 <ArticleSection>
@@ -44,7 +44,13 @@
     <p>
       De gekozen hotspot is:
       <Highlight>{chosenHotspot}</Highlight>, met
-      {hotspotAudience}
+      {#if typeof hotspotAudience === 'string'}
+        {hotspotAudience.toLowerCase()}
+      {:else}
+        {#each hotspotAudience as audience, i (audience)}
+          {i === hotspotAudience.length - 2 ? `${audience.toLowerCase()} en ` : i === hotspotAudience.length - 1 ? `${audience.toLowerCase()}` : ` ${audience.toLowerCase()},`}
+        {/each}
+      {/if}
       als primaire doelgroep. Parkeergelegenheden
       {showInvalidOpeningHours ? 'met en zonder' : 'met'}
       <Highlight>
