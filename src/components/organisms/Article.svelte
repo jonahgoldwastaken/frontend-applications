@@ -21,12 +21,11 @@
   <meta name="author" content="Jonah Meijers" />
   <meta
     name="title"
-    content="Hoe goed worden verschillende bevolkingsgroepen gerepresenteerd als het
-      gaat om parkeermogelijkheden voor aantrekkelijke locaties (hot-spots)?" />
+    content="Hoe goed worden de primaire doelgroepen van hotspots in Amsterdam vertegenwoordigd in parkeermogelijkheden?" />
   <Header>
     <h1>
-      Hoe goed worden verschillende bevolkingsgroepen gerepresenteerd als het
-      gaat om parkeermogelijkheden voor aantrekkelijke locaties (hot-spots)?
+      Hoe goed worden de primaire doelgroepen van hotspots in Amsterdam
+      vertegenwoordigd in parkeermogelijkheden?
     </h1>
   </Header>
   <Preview />
