@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte'
+  import { onDestroy, onMount } from 'svelte'
   import ClockCenter from '../atoms/ClockCenter.svelte'
   import ClockHands from '../atoms/ClockHands.svelte'
   import ClockOutline from '../atoms/ClockOutline.svelte'

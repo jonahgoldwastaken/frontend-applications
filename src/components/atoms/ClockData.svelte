@@ -1,7 +1,7 @@
 <script>
-  import { fade, fly } from 'svelte/transition'
-  import { cubicInOut } from 'svelte/easing'
   import { lineRadial, scaleLinear } from 'd3'
+  import { cubicInOut } from 'svelte/easing'
+  import { fade } from 'svelte/transition'
   import { dimension, distanceRadius } from '../../store/clock'
 
   export let mouseover

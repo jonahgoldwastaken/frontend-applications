@@ -1,7 +1,7 @@
 <script>
+  import Footer from './components/atoms/Footer.svelte'
   import LoadingClock from './components/molecules/LoadingClock.svelte'
   import Article from './components/organisms/Article.svelte'
-  import Footer from './components/atoms/Footer.svelte'
   import { rdwData } from './store/data'
 </script>
 

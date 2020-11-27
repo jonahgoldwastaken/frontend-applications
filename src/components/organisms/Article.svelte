@@ -1,11 +1,11 @@
 <script>
+  import Anchor from '../atoms/Anchor.svelte'
   import Header from '../atoms/Header.svelte'
+  import Highlight from '../atoms/Highlight.svelte'
   import Intro from '../molecules/Intro.svelte'
+  import Playground from '../organs/Playground.svelte'
   import Preview from '../organs/Preview.svelte'
   import Section from '../organs/Section.svelte'
-  import Playground from '../organs/Playground.svelte'
-  import Highlight from '../atoms/Highlight.svelte'
-  import Anchor from '../atoms/Anchor.svelte'
 </script>
 
 <style>

@@ -1,17 +1,16 @@
 <script>
-  import { onMount, afterUpdate } from 'svelte'
   import { always, filter, pipe, unless } from 'ramda'
-  import { rdwData, hotspotData } from '../../store/data'
+  import { hotspotData, rdwData } from '../../store/data'
   import {
     filterDataWithValidHours,
     filterOnDistanceToHotspot,
     filterOnOpeningHours,
   } from '../../utilities/clock'
-  import Highlight from '../atoms/Highlight.svelte'
-  import DataClock from '../molecules/DataClock.svelte'
-  import ParagraphContainer from '../atoms/ParagraphContainer.svelte'
   import { timeFormatter } from '../../utilities/string.js'
+  import Highlight from '../atoms/Highlight.svelte'
+  import ParagraphContainer from '../atoms/ParagraphContainer.svelte'
   import ArticleSection from '../molecules/ArticleSection.svelte'
+  import DataClock from '../molecules/DataClock.svelte'
   import Form from '../molecules/Form.svelte'
 
   let distances = [0, 1]

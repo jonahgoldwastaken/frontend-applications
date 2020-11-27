@@ -1,6 +1,6 @@
 <script>
-  import { timeFormatter } from '../../utilities/string'
   import { hotspotData } from '../../store/data'
+  import { timeFormatter } from '../../utilities/string'
 
   export let timeType
   export let distances

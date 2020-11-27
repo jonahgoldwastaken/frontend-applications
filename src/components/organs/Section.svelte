@@ -6,12 +6,12 @@
     filterOnDistanceToHotspot,
     filterOnOpeningHours,
   } from '../../utilities/clock'
-  import Form from '../molecules/Form.svelte'
-  import Highlight from '../atoms/Highlight.svelte'
-  import DataClock from '../molecules/DataClock.svelte'
-  import ArticleSection from '../molecules/ArticleSection.svelte'
-  import ParagraphContainer from '../atoms/ParagraphContainer.svelte'
   import { timeFormatter } from '../../utilities/string.js'
+  import Highlight from '../atoms/Highlight.svelte'
+  import ParagraphContainer from '../atoms/ParagraphContainer.svelte'
+  import ArticleSection from '../molecules/ArticleSection.svelte'
+  import DataClock from '../molecules/DataClock.svelte'
+  import Form from '../molecules/Form.svelte'
 
   export let distances = [0, 1]
   export let times = [0, 12]

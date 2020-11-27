@@ -1,11 +1,11 @@
 <script>
+  import { timeFormatter } from '../../utilities/string.js'
   import ClockAngle from '../atoms/ClockAngle.svelte'
   import ClockCenter from '../atoms/ClockCenter.svelte'
   import ClockData from '../atoms/ClockData.svelte'
   import ClockOutline from '../atoms/ClockOutline.svelte'
   import ClockRadius from '../atoms/ClockRadius.svelte'
   import Tooltip from '../atoms/Tooltip.svelte'
-  import { timeFormatter } from '../../utilities/string.js'
 
   let currentParkingArea = null
   export let data = []
