@@ -34,6 +34,9 @@
     (acc, curr) => (curr.capacity > 0 ? acc + 1 : acc),
     0
   )
+  $: hotspotAudience = $hotspotData
+    .find(hotspot => hotspot.name === chosenHotspot)
+    .audience.toLowerCase()
 </script>
 
 <style>
@@ -44,7 +47,9 @@
     <h2>Playground</h2>
     <p>
       De gekozen hotspot is:
-      <Highlight>{chosenHotspot}</Highlight>. Parkeergelegenheden
+      <Highlight>{chosenHotspot}</Highlight>, met
+      {hotspotAudience}
+      als primaire doelgroep. Parkeergelegenheden
       {showInvalidOpeningHours ? 'met en zonder' : 'met'}
       <Highlight>
         {timeType === 'opening' ? 'openingstijden' : 'sluitingstijden'}
