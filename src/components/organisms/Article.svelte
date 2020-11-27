@@ -13,6 +13,7 @@
     max-width: 84rem;
     margin: 0 auto;
     padding: 0 2rem;
+    scroll-snap-type: y proximity;
   }
 </style>
 
@@ -122,7 +123,7 @@
     </p>
   </Section>
   <Section showInvalidOpeningHours chosenHotspot="Rijksmuseum">
-    <h2 slot="heading">Het centrum voor de klassieke kunst</h2>
+    <h2 slot="heading">Hét museum voor de klassieke kunst</h2>
     <img
       slot="image"
       src="https://images.arcadis.com/media/6/6/8/%7B66844D25-A8FF-46FB-BBF6-E5855A6087E3%7DRijksmuseumAmsterdam-main.jpg"

@@ -1,4 +1,5 @@
 <script>
+  export let sticky
 </script>
 
 <style>
@@ -11,8 +12,12 @@
     max-width: 40rem;
     margin: 1rem 0 0;
   }
+  .sticky {
+    position: sticky;
+    top: 1rem;
+  }
 </style>
 
-<div class="paragraph-container">
+<div class:sticky class="paragraph-container">
   <slot />
 </div>

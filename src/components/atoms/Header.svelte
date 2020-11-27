@@ -4,6 +4,7 @@
     margin-bottom: 20rem;
     display: flex;
     align-items: flex-end;
+    scroll-snap-align: start;
   }
 </style>
 
