@@ -42,8 +42,12 @@
   :global(h3) {
     font-weight: 500;
     font-size: 1.5rem;
-    margin: 0 0 1em;
+    margin: 0 0 1rem;
     color: black;
+  }
+
+  :global(h3:not(:first-child)) {
+    margin: 1.5em 0 1rem;
   }
 
   :global(p) {

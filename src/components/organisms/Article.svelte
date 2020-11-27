@@ -142,6 +142,7 @@
     </p>
   </Section>
   <Intro>
+    <h3>En de rest?</h3>
     <p>
       Het ziet er naar uit dat de grote spelers goed worden gerepresenteerd, en
       dat het toch wel lijkt dat er voor iedereen wel plek is om met de auto te
@@ -149,6 +150,37 @@
       vooral verder, en ga aan de slag met alle andere locaties die beschikbaar
       zijn in de dataset.
     </p>
+    <h3>Bronnen</h3>
+    <p>
+      De data is afkomstig uit meerdere datasets van het RDW, waarbij de data
+      van dezelfde parkeergebieden zijn samengevoegd:
+    </p>
+    <ul>
+      <li>
+        <Anchor
+          href="https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-GEBIED/adw6-9hsg"
+          target="_blank"
+          rel="noopener noreferrer">
+          RDW Open Data - GEBIED
+        </Anchor>
+      </li>
+      <li>
+        <Anchor
+          href="https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-PARKING-TOEGANG/edv8-qiyg"
+          target="_blank"
+          rel="noopener noreferrer">
+          RDW Open Data - PARKING TOEGANG
+        </Anchor>
+      </li>
+      <li>
+        <Anchor
+          href="https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-GEOMETRIE-GEBIED/nsk3-v9n7"
+          target="_blank"
+          rel="noopener noreferrer">
+          RDW Open Data - GEOMETRIE GEBIED
+        </Anchor>
+      </li>
+    </ul>
   </Intro>
   <Playground />
 </article>
