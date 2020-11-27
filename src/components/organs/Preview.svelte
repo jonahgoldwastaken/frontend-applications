@@ -24,7 +24,7 @@
     filter(filterOnOpeningHours(times, timeType)),
     unless(always(showInvalidOpeningHours), filter(filterDataWithValidHours))
   )($rdwData)
-  $: capacity = data.reduce((acc, curr) => acc + curr.capacity, 0)
+  $: totalCapacity = data.reduce((acc, curr) => acc + curr.capacity, 0)
 
   onMount(() => {
     chosenHotspot = 'Olympisch Stadion'
@@ -115,7 +115,7 @@
       zoals
       <Highlight>
         De totale hoeveelheid vermelde parkeerplaatsen:
-        {capacity}
+        {totalCapacity}
       </Highlight>
       of
       <Highlight>De minimum afstand: {distances[0]}km</Highlight>

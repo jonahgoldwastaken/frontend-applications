@@ -28,7 +28,7 @@
     (acc, curr) => (curr.openingHours[0] != undefined ? acc + 1 : acc),
     0
   )
-  $: capacity = data.reduce((acc, curr) => acc + curr.capacity, 0)
+  $: totalCapacity = data.reduce((acc, curr) => acc + curr.capacity, 0)
   $: amountCapacitySources = data.reduce(
     (acc, curr) => (curr.capacity > 0 ? acc + 1 : acc),
     0
@@ -89,12 +89,12 @@
           {amountCapacitySources === 1 ? 'enige locatie' : `${amountCapacitySources} locaties`}
         </Highlight>
         waarvan de totale capaciteit bekend is, in totaal
-        <Highlight>{capacity} auto's</Highlight>
+        <Highlight>{totalCapacity} auto's</Highlight>
         terecht bij de
         {data.length === 1 ? 'gelegenheid' : 'gelegenheden'}.
 
         <Highlight>
-          {capacity > 750 ? "Dat zijn veel auto's" : capacity > 500 ? "Dat zijn best wat auto's" : capacity > 250 ? 'Dat komt al best ver' : 'Dat zijn best wel weinig parkeerplaatsen'}.
+          {totalCapacity > 750 ? "Dat zijn veel auto's" : totalCapacity > 500 ? "Dat zijn best wat auto's" : totalCapacity > 250 ? 'Dat komt al best ver' : 'Dat zijn best wel weinig parkeerplaatsen'}.
         </Highlight>
       </p>
     {/if}
