@@ -150,6 +150,9 @@
       vooral verder, en ga aan de slag met alle andere locaties die beschikbaar
       zijn in de dataset.
     </p>
+  </Intro>
+  <Playground />
+  <Intro>
     <h3>Bronnen</h3>
     <p>
       De data is afkomstig uit meerdere datasets van het RDW, waarbij de data
@@ -182,5 +185,4 @@
       </li>
     </ul>
   </Intro>
-  <Playground />
 </article>
