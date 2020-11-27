@@ -39,9 +39,6 @@
     .audience.toLowerCase()
 </script>
 
-<style>
-</style>
-
 <ArticleSection>
   <ParagraphContainer sticky>
     <h2>Playground</h2>
